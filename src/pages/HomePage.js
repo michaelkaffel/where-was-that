@@ -8,11 +8,11 @@ const Home = () => {
             <div className='spacer'></div>
             <Container>
                 <Row className='hero-row'>
-                    <Col md='6' className='d-flex flex-column justify-content-between'>
-                        <h1>Where Was That?</h1>
-                        <h3>Don't lose track of all your favorite hiking trails, camping spots, and scenic overlooks.</h3>
+                    <Col lg='6' className='d-flex flex-column justify-content-between'>
+                        <h1 className='hero-title'>Where Was That?</h1>
+                        <h3 className='hero-subtitle'>Don't lose track of all your favorite hiking trails, camping spots, and scenic overlooks.</h3>
                     </Col>
-                    <Col md='6'>
+                    <Col lg='6'>
                         <img className='img-fluid rounded' src={homePageHero} />
                     </Col>
                 </Row>

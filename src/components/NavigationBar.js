@@ -48,17 +48,17 @@ function NavigationBar() {
               </DropdownToggle>
               <DropdownMenu right >
                 <DropdownItem>
-                  <NavLink tag={RRNavLink} to='/hiking-trails'>
+                  <NavLink className='cust-nav-link' style={{ color: 'black' }} tag={RRNavLink} to='/hiking-trails'>
                     Hiking Trails
                   </NavLink>
                 </DropdownItem>
                 <DropdownItem>
-                  <NavLink tag={RRNavLink} to='/camping-spots'>
+                  <NavLink className='cust-nav-link' style={{ color: 'black' }} tag={RRNavLink} to='/camping-spots'>
                     Camping Spots
                   </NavLink>
                 </DropdownItem>
                 <DropdownItem>
-                  <NavLink tag={RRNavLink} to='/scenic-overlooks'>
+                  <NavLink className='cust-nav-link' style={{ color: 'black' }} tag={RRNavLink} to='/scenic-overlooks'>
                     Scenic Lookouts
                   </NavLink>
                 </DropdownItem>

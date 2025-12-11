@@ -2,9 +2,9 @@ import { Routes, Route } from 'react-router-dom';
 import NavigationBar from "./components/NavigationBar";
 import Home from './pages/HomePage';
 import AddLocationsPage from './pages/AddLocationsPage';
-import HikingTrails from './pages/HikingTrails';
-import CampingSpots from './pages/CampingSpots';
-import ScenicOverlooks from './pages/ScenicOverlooks';
+import HikingTrails from './pages/HikingTrailsPage';
+import CampingSpots from './pages/CampingSpotsPage';
+import ScenicOverlooks from './pages/ScenicOverlooksPage';
 import './App.css';
 
 function App() {
