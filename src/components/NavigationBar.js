@@ -31,32 +31,35 @@ function NavigationBar() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink className='nav-color cust-link-style me-2' tag={RRNavLink} to="/">
+              <NavLink className='me-2' tag={RRNavLink} to="/">
               <i class="fa-solid fa-house fa-lg" style={{color: "#1C3424"}}></i>
               Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink >
+              <NavLink className='me-2' tag={RRNavLink} to="/add-locations">
               <i class="fa-solid fa-file fa-lg" style={{color: "#1C3424"}}></i>
-                Project Page
+                Add Locations
               </NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle className='nav-color cust-link-style' nav caret>
+              <DropdownToggle className='' nav caret>
                 <i class="fa-solid fa-list-check fa-lg me-1" style={{color: "#1C3424;"}}></i>
-                Exercises
+                Saved Locations
               </DropdownToggle>
               <DropdownMenu right >
                 <DropdownItem>
-                  <NavLink >
-                    Option 1
+                  <NavLink tag={RRNavLink} to='/hiking-trails'>
+                    Hiking Trails
                   </NavLink>
                 </DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
                 <DropdownItem>
-                  <NavLink >
-                    All Exercises
+                  <NavLink tag={RRNavLink} to='/camping-spots'>
+                    Camping Spots
+                  </NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink tag={RRNavLink} to='/scenic-overlooks'>
+                    Scenic Lookouts
                   </NavLink>
                 </DropdownItem>
               </DropdownMenu>
