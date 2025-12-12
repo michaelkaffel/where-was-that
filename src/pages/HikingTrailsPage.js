@@ -1,22 +1,16 @@
+import { Container } from 'reactstrap';
+import HikesList from '../features/hikes/HikesList';
 
 
-const HikingTrails = () => {
+const HikingTrailsPage = () => {
     return (
         <>
-            <h2>Hiking Trails</h2>
-            <h2>Hiking Trails</h2>
-            <h2>Hiking Trails</h2>
-            <h2>Hiking Trails</h2>
-            <h2>Hiking Trails</h2>
-            <h2>Hiking Trails</h2>
-            <h2>Hiking Trails</h2>
-            <h2>Hiking Trails</h2>
-            <h2>Hiking Trails</h2>
-            <h2>Hiking Trails</h2>
-            <h2>Hiking Trails</h2>
-            <h2>Hiking Trails</h2>
+            <h2 className='text-center'>Hiking Trails</h2>
+            <Container>
+                <HikesList />    
+            </Container>        
         </>
     )
 };
 
-export default HikingTrails;
+export default HikingTrailsPage;

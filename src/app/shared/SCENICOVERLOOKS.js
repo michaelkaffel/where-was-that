@@ -3,7 +3,7 @@ import washingtonPass from '../images/washingtonpass.jpg';
 import hurricaneRidge from '../images/IMG_4064.jpeg';
 
 
-export const SCENICOVERLOOKS = () => [
+export const SCENICOVERLOOKS = [
     {
         id: 0,
         name: 'Blue Mountain',

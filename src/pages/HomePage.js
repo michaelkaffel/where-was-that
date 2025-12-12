@@ -1,11 +1,12 @@
 import { Container, Row, Col, Button } from 'reactstrap';
-import homePageHero from '../app/images/IMG_5647.jpeg'
+import homePageHero from '../app/images/IMG_5647.jpeg';
+import { Link } from 'react-router-dom'
+
 
 
 const Home = () => {
     return (
         <>
-            <div className='spacer'></div>
             <Container>
                 <Row className='hero-row'>
                     <Col lg='6' className='d-flex flex-column justify-content-between'>
@@ -23,15 +24,20 @@ const Home = () => {
                         </Button>
                     </Col>
                     <Col className='text-center mb-2'>
-                        <Button className='home-page-row-btns'>
-                            Campsites
-                        </Button>
+                        <Link to='/camping-spots'>
+                            <Button className='home-page-row-btns'>
+                                Campsites
+                            </Button>
+                        </Link>
                     </Col>
                     <Col className='text-center mb-2'>
                         <Button className='home-page-row-btns'>
                             Overlooks
                         </Button>
                     </Col>
+                </Row>
+                <Row>
+
                 </Row>
             </Container>
 
