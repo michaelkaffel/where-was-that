@@ -25,3 +25,15 @@ export const selectOverlooksById = (id) => (state) => {
 export const featuredOverlook = (state) => {
     return state.overlooks.overlooksArray.find((overlook) => overlook.featured);
 };
+
+export const selectOverlooksByName = (title) => (state) => {
+    return state.overlooks.overlooksArray.find(
+        (overlook) => overlook.title === title
+    )
+}
+
+export const selectRandomOverlook = (state) => {
+    return state.overlooks.overlooksArray[
+        Math.floor(Math.random() * state.overlooks.overlooksArray.length)
+    ]
+}

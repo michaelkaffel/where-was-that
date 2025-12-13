@@ -5,6 +5,10 @@ import AddLocationsPage from './pages/AddLocationsPage';
 import HikingTrailsPage from './pages/HikingTrailsPage';
 import CampingSpotsPage from './pages/CampingSpotsPage';
 import OverlooksPage from './pages/OverlooksPage';
+import HikingDetailPage from './pages/HikingDetailPage';
+import CampingDetailPage from './pages/CampingDetailPage';
+import OverlookDetailPage from './pages/OverlookDetailPage';
+
 import './App.css';
 
 function App() {
@@ -12,12 +16,17 @@ function App() {
     <>
       
       <NavigationBar />
+      
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='add-locations' element={<AddLocationsPage/>}/>
         <Route path='hiking-trails' element={<HikingTrailsPage />}/>
+        <Route path='hiking-trails/:id' element={<HikingDetailPage />}/>
         <Route path='camping-spots' element={<CampingSpotsPage />}/>
+        <Route path='camping-spots/:id' element={<CampingDetailPage />}/> 
+
         <Route path='scenic-overlooks' element={<OverlooksPage />}/>
+        <Route path='scenic-overlooks/:id' element={<OverlookDetailPage />}/>
       </Routes>
     </>
       

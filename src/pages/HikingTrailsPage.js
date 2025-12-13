@@ -1,14 +1,17 @@
 import { Container } from 'reactstrap';
 import HikesList from '../features/hikes/HikesList';
+import SubHeaderHikes from '../components/SubHeaderHikes';
 
 
 const HikingTrailsPage = () => {
     return (
         <>
-            <h2 className='text-center'>Hiking Trails</h2>
             <Container>
-                <HikesList />    
-            </Container>        
+                <SubHeaderHikes current='Hiking Trails'/>
+                <h2 className='text-center'>Hiking Trails</h2>
+
+                <HikesList />
+            </Container>
         </>
     )
 };

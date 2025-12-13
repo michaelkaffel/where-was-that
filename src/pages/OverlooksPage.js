@@ -1,11 +1,14 @@
 import { Container } from 'reactstrap';
 import OverlooksList from '../features/overlooks/OverlooksList';
+import SubHeaderOverlooks from '../components/SubHeaderOverlooks';
 
 const OverlooksPage = () => {
     return (
         <>
-            <h2 className='text-center'>Scenic Overlooks</h2>
             <Container>
+                <SubHeaderOverlooks current='Scenic Overlooks' />
+                <h2 className='text-center'>Scenic Overlooks</h2>
+
                 <OverlooksList />
             </Container>
         </>

@@ -2,15 +2,15 @@ import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'react
 import { Link } from 'react-router-dom'
 
 const ItemCard = ({ item }) => {
-    const { id, image, name, description, dateVisited } = item
+    const { id, image, title, description, location } = item
 
     return (
         <Card className='m-3'>
             <img alt="Sample" src={image}/>
             <CardBody>
-                <CardTitle tag="h2">{name}</CardTitle>
+                <CardTitle tag="h2">{title}</CardTitle>
                 <CardSubtitle className="mb-2 text-muted" tag="h6">
-                    {dateVisited}
+                    {location}
                 </CardSubtitle>
                 <CardText>{description}</CardText>
                 <div className='d-flex justify-content-between align-items-center'>
