@@ -1,4 +1,5 @@
-import { Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 
 const PreviewCard = ({ item }) => {
