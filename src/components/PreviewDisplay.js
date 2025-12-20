@@ -20,6 +20,20 @@ const PreviewDisplay = () => {
     console.log(hike);
     console.log(overlook);
 
+    let hikeContent = null;
+    let campContent = null;
+    let overlookContent = null;
+    if (!hike) {
+        hikeContent = <h4 className='text-center mt-3'>Add some hikes!</h4>
+    } else hikeContent = <PreviewCard item={hike} />
+
+    if (!campsite) {
+        campContent = <h4 className='text-center mt-3'>Add some campsites!</h4>
+    } else campContent = <PreviewCard item={campsite} />
+
+    if (!overlook) {
+        overlookContent = <h4 className='text-center mt-3'>Add some lookouts!</h4>
+    } else overlookContent = <PreviewCard item={overlook} />
 
     return (
         <>
@@ -28,18 +42,18 @@ const PreviewDisplay = () => {
                 
                 <Row>
                      <Col md='4'>
+                        {hikeContent}
                         
-                        <PreviewCard item={hike} />
                     </Col>
 
                     <Col md='4'>
                         
-                        <PreviewCard item={campsite} />
+                        {campContent}
                     </Col>
                    
                     <Col md='4'>
                         
-                        <PreviewCard item={overlook} />
+                        {overlookContent}
                     </Col>
 
                 </Row>

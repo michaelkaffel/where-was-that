@@ -15,13 +15,18 @@ const overlooksSlice = createSlice({
                 ...action.payload
             };
             state.overlooksArray.push(newOverlook);
+        },
+        removeOverlook: (state, action) => {
+            state.overlooksArray = state.overlooksArray.filter(
+                (overlook) => overlook.id !==action.payload.id
+            )
         }
     }
 });
 
 export const overlooksReducer = overlooksSlice.reducer;
 
-export const { addOverlook } = overlooksSlice.actions;
+export const { addOverlook, removeOverlook } = overlooksSlice.actions;
 
 export const selectAllOverlooks = (state) => {
     return state.overlooks.overlooksArray;

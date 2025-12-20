@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'reactstrap';
-import ItemCard from '../../components/ItemCard';
+import HikeCard from './HikeCard';
 import { selectAllHikes } from './hikesSlice';
 
 const HikesList = () => {
@@ -12,9 +12,9 @@ const HikesList = () => {
                 return (
                     <Col
                         md='4'
-                        key={hike.id}
+                        key={hike.key || hike.id}
                     >
-                        <ItemCard item={hike} />
+                        <HikeCard hike={hike} />
                     </Col>
                 )
             }

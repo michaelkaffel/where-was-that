@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'reactstrap';
-import ItemCard from '../../components/ItemCard';
+import OverlookCard from './OverlookCard';
 import { selectAllOverlooks } from './overlooksSlice';
 
 const OverlooksList = () => {
@@ -14,7 +14,7 @@ const OverlooksList = () => {
                         md='4'
                         key={overlook.id}
                     >
-                        <ItemCard item={overlook} />
+                        <OverlookCard overlook={overlook} />
                     </Col>
                 )
             })}

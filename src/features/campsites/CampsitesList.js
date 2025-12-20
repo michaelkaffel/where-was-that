@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Row, Col } from 'reactstrap';
-import ItemCard from "../../components/ItemCard";
+import CampsiteCard from "./CampsiteCard";
 import { selectAllCampsites } from "./campsitesSlice";
 
 const CampsitesList = () => {
@@ -14,7 +14,7 @@ const CampsitesList = () => {
                         md='4'
                         key={campsite.id}
                     >
-                        <ItemCard item={campsite} />
+                        <CampsiteCard campsite={campsite} />
                     </Col>
                 )
             })}

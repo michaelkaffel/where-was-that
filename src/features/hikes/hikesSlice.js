@@ -14,16 +14,22 @@ const hikesSlice = createSlice({
             console.log('addHike state.hikesArray', state.hikesArray)
             const newHike = {
                 id: state.hikesArray.length,
+                key: Math.floor(Math.random() * 100000),
                 ...action.payload
             };
             state.hikesArray.push(newHike);
+        },
+        removeHike: (state, action) => {
+            state.hikesArray = state.hikesArray.filter(
+                (hike) => hike.id !== action.payload.id
+            )
         }
     }
 });
 
 export const hikesReducer = hikesSlice.reducer;
 
-export const { addHike } = hikesSlice.actions;
+export const { addHike, removeHike } = hikesSlice.actions;
 
 export const selectAllHikes = (state) => {
     return state.hikes.hikesArray;

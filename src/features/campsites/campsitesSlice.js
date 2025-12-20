@@ -15,13 +15,18 @@ const campsitesSlice = createSlice({
                 ...action.payload
             };
             state.campsitesArray.push(newCampsite)
+        },
+        removeCampsite: (state, action) => {
+            state.campsitesArray = state.campsitesArray.filter(
+                (campsite) => campsite.id !== action.payload.id
+            )
         }
     }
 });
 
 export const campsitesReducer = campsitesSlice.reducer;
 
-export const { addCampsite } = campsitesSlice.actions;
+export const { addCampsite, removeCampsite } = campsitesSlice.actions;
 
 export const selectAllCampsites = (state) => {
     return state.campsites.campsitesArray;
