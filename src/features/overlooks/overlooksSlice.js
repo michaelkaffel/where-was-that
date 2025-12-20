@@ -7,10 +7,21 @@ const initialState = {
 
 const overlooksSlice = createSlice({
     name: 'overlooks',
-    initialState
+    initialState,
+    reducers: {
+        addOverlook: (state, action) => {
+            const newOverlook = {
+                id: state.overlooksArray.length,
+                ...action.payload
+            };
+            state.overlooksArray.push(newOverlook);
+        }
+    }
 });
 
 export const overlooksReducer = overlooksSlice.reducer;
+
+export const { addOverlook } = overlooksSlice.actions;
 
 export const selectAllOverlooks = (state) => {
     return state.overlooks.overlooksArray;

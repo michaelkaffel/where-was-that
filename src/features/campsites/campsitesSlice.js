@@ -7,10 +7,21 @@ const initialState = {
 
 const campsitesSlice = createSlice({
     name: 'campsites',
-    initialState
+    initialState,
+    reducers: {
+        addCampsite: (state, action) => {
+            const newCampsite = {
+                id: state.campsitesArray.length,
+                ...action.payload
+            };
+            state.campsitesArray.push(newCampsite)
+        }
+    }
 });
 
 export const campsitesReducer = campsitesSlice.reducer;
+
+export const { addCampsite } = campsitesSlice.actions;
 
 export const selectAllCampsites = (state) => {
     return state.campsites.campsitesArray;

@@ -8,9 +8,22 @@ const initialState = {
 const hikesSlice = createSlice({
     name: 'hikes',
     initialState,
+    reducers: {
+        addHike: (state, action) => {
+            console.log('addHike action.payload', action.payload);
+            console.log('addHike state.hikesArray', state.hikesArray)
+            const newHike = {
+                id: state.hikesArray.length,
+                ...action.payload
+            };
+            state.hikesArray.push(newHike);
+        }
+    }
 });
 
 export const hikesReducer = hikesSlice.reducer;
+
+export const { addHike } = hikesSlice.actions;
 
 export const selectAllHikes = (state) => {
     return state.hikes.hikesArray;
@@ -22,7 +35,7 @@ export const selectHikeById = (id) => (state) => {
     );
 };
 
-export const featuredCampsite = (state) => {
+export const featuredHike = (state) => {
     return state.hikes.hikesArray.find((hike) => hike.featured);
 };
 

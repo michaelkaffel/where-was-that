@@ -1,13 +1,28 @@
-
+import placeHolderImg from '../app/images/hikesPlaceholder.png'
 
 const ItemDetails = ({ item }) => {
-    const { id, image, title, description, location } = item;
+    const { id, image, title, description, location, googleMap } = item;
+
+    console.log(image)
+
+    let imageInsert;
+
+    if (!image) {
+        imageInsert = placeHolderImg   
+    } else imageInsert = image
 
     return (
         <>
-            <img src={image} className='img-fluid' />
+            <img src={imageInsert} className='img-fluid' />
+            {googleMap}
+            {location}
+            <div>{googleMap}</div>
+            <div>{description}</div>
+            
+
         </>
     )
 }
 
 export default ItemDetails;
+

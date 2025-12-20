@@ -1,6 +1,7 @@
 import { Container } from 'reactstrap';
 import CampsitesList from '../features/campsites/CampsitesList';
 import SubHeaderCampsites from '../components/SubHeaderCampsites';
+import AccordianForCampsiteForm from '../features/campsites/AccordianForCampsiteForm';
 
 
 const CampingSpotsPage = () => {
@@ -9,7 +10,7 @@ const CampingSpotsPage = () => {
             <Container>
                 <SubHeaderCampsites current='Camping Spots'/>
                 <h2 className='text-center'>Camping Spots</h2>
-
+                <AccordianForCampsiteForm />
                 <CampsitesList />
             </Container>
         </>
