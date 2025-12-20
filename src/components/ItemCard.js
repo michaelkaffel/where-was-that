@@ -25,10 +25,10 @@ const ItemCard = ({ item }) => {
                             Details
                         </Button>
                     </Link>
-                    <div>
+                    {/* <div>
                         <i className="fa-regular fa-heart fa-xl"></i>
                         <i className="fa-solid fa-trash-can fa-xl"></i>
-                    </div>
+                    </div> */}
                 </div>
             </CardBody>
         </Card>
