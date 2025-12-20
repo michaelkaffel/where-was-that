@@ -8,6 +8,7 @@ import OverlooksPage from './pages/OverlooksPage';
 import HikingDetailPage from './pages/HikingDetailPage';
 import CampingDetailPage from './pages/CampingDetailPage';
 import OverlookDetailPage from './pages/OverlookDetailPage';
+import Footer from './components/Footer';
 
 import './App.css';
 
@@ -28,6 +29,7 @@ function App() {
         <Route path='scenic-overlooks' element={<OverlooksPage />}/>
         <Route path='scenic-overlooks/:id' element={<OverlookDetailPage />}/>
       </Routes>
+      <Footer />
     </>
       
   );
