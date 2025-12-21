@@ -1,21 +1,31 @@
 import { useSelector } from 'react-redux';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { selectRandomOverlook } from '../features/overlooks/overlooksSlice';
-import AccordianForHikeForm from '../features/hikes/AccordianForHikeForm';
-import AccordianForOverlookForm from '../features/overlooks/AccordianForOverlookForm';
-import AccordianForCampsiteForm from '../features/campsites/AccordianForCampsiteForm';
+import AccordionForHikeForm from '../features/hikes/AccordionForHikeForm';
+import AccordionForOverlookForm from '../features/overlooks/AccordionForOverlookForm';
+import AccordionForCampsiteForm from '../features/campsites/AccordionForCampsiteForm';
 
 
 const AddLocationsPage = () => {
 
     const overlook = useSelector(selectRandomOverlook);
-    const { image } = overlook
+    const { image, title } = overlook
 
     return (
         <>
-            <AccordianForHikeForm className='mx-2'/>
-            <AccordianForCampsiteForm />
-            <AccordianForOverlookForm />
-            <img className='img-fluid mt-3' src={image}/>
+            <Container>
+                <Row>
+                    <Col>
+                        <AccordionForHikeForm className='mx-2' />
+                        <AccordionForCampsiteForm />
+                        <AccordionForOverlookForm />
+                        <img className='img-fluid mt-3 rounded' alt={title} src={image} />
+                    </Col>
+                </Row>
+            </Container>
+
         </>
     )
 };

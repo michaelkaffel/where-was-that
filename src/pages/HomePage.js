@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col'
+import Col from 'react-bootstrap/Col';
 import homePageHero from '../app/images/IMG_5647.jpeg';
 import PreviewDisplay from '../components/PreviewDisplay';
 import { Link } from 'react-router-dom';
@@ -21,7 +21,7 @@ const Home = () => {
                         <h3 className='hero-subtitle'>Don't lose track of all your favorite hiking trails, camping spots, and scenic overlooks.</h3>
                     </Col>
                     <Col lg='6'>
-                        <img className='img-fluid rounded' src={homePageHero} />
+                        <img className='img-fluid rounded' alt='A scenic view overlooking a mountain' src={homePageHero} />
                     </Col>
                 </Row>
                 <Row className='mt-3'>
