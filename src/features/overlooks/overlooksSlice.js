@@ -10,8 +10,12 @@ const overlooksSlice = createSlice({
     initialState,
     reducers: {
         addOverlook: (state, action) => {
+
+            const identifier = Math.floor(Math.random() * 10000 );
+
             const newOverlook = {
-                id: state.overlooksArray.length,
+                id: identifier,
+                key: identifier,
                 ...action.payload
             };
             state.overlooksArray.push(newOverlook);

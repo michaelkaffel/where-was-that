@@ -8,12 +8,8 @@ const HikeCard = ({ hike }) => {
 
     const dispatch = useDispatch();
 
-    const hikesArray = useSelector((state) => state.hikes.hikesArray)
-    console.log(hikesArray)
-
     const { id, image, title, description, location } = hike;
     let imageInsert;
-    console.log(title, id)
 
     if (!image) {
         imageInsert = hikePlaceHolderImg   

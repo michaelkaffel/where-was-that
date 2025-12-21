@@ -10,11 +10,11 @@ const hikesSlice = createSlice({
     initialState,
     reducers: {
         addHike: (state, action) => {
-            console.log('addHike action.payload', action.payload);
-            console.log('addHike state.hikesArray', state.hikesArray)
+            const identifier = Math.floor(Math.random() * 10000 );
+            
             const newHike = {
-                id: state.hikesArray.length,
-                key: Math.floor(Math.random() * 100000),
+                id: identifier,
+                key: identifier,
                 ...action.payload
             };
             state.hikesArray.push(newHike);

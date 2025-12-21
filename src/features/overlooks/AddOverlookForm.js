@@ -10,7 +10,7 @@ const AddOverlookForm = () => {
     const dispatch = useDispatch();
 
     const HandleSubmit = (values, {resetForm }) => {
-        console.log(values)
+
         const overlook = {
             // id: newId,
             title: values.title,
@@ -21,7 +21,7 @@ const AddOverlookForm = () => {
             dateVisited: values.dateVisited,
             favorite: null
         };
-        console.log('overlook', overlook);
+
         dispatch(addOverlook(overlook));
         resetForm();
     }

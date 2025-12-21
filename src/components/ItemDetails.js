@@ -3,7 +3,7 @@ import placeHolderImg from '../app/images/hikesPlaceholder.png'
 const ItemDetails = ({ item }) => {
     const { id, image, title, description, location, googleMap } = item;
 
-    console.log(image)
+    
 
     let imageInsert;
 

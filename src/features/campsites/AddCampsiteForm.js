@@ -1,22 +1,15 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button, FormGroup, Label } from 'reactstrap'
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { validateForm } from '../../utils/validateForm';
 import { addCampsite } from './campsitesSlice';
-import { selectAllCampsites } from './campsitesSlice';
 
 const AddCampsiteForm = () => {
-
-    // const campsitesArray = useSelector(selectAllCampsites);
-
-    // const campsitesArray = useSelector((state) => state.campsitesArray)
-    
-    // const newId = campsitesArray.length + 1
 
     const dispatch = useDispatch();
 
     const HandleSubmit = (values, {resetForm }) => {
-        console.log(values)
+
         const campsite = {
             title: values.title,
             description: values.description, 
@@ -26,20 +19,15 @@ const AddCampsiteForm = () => {
             dateVisited: values.dateVisited,
             favorite: null
         };
-        console.log('campsite', campsite);
+        
         dispatch(addCampsite(campsite))
         resetForm();
     }
-
-
-
-
 
     return (
 
         <Formik
             initialValues={{
-                
                 title: '',
                 description: '',
                 // googleMaps: '',

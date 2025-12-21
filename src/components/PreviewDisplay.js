@@ -12,13 +12,11 @@ const PreviewDisplay = () => {
         selectRandomOverlook(state)
     ]);
 
-    console.log(items);
+
 
     const [campsite, hike, overlook] = items
 
-    console.log(campsite);
-    console.log(hike);
-    console.log(overlook);
+ 
 
     let hikeContent = null;
     let campContent = null;

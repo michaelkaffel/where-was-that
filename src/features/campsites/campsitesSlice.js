@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 import { CAMPSITES } from '../../app/shared/CAMPSITES';
 
 const initialState = { 
@@ -10,8 +10,12 @@ const campsitesSlice = createSlice({
     initialState,
     reducers: {
         addCampsite: (state, action) => {
+
+            const identifier = Math.floor(Math.random() * 10000 );
+
             const newCampsite = {
-                id: state.campsitesArray.length,
+                id: identifier,
+                key: identifier,
                 ...action.payload
             };
             state.campsitesArray.push(newCampsite)

@@ -1,20 +1,16 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button, FormGroup, Label } from 'reactstrap'
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { validateForm } from '../../utils/validateForm';
 import { addHike } from './hikesSlice';
-import { selectAllHikes } from './hikesSlice';
+
 
 const AddHikeForm = () => {
 
-    // const hikesArray = useSelector((state) => state.hikes.hikesArray);
-
-    // const newId = hikesArray.length + 1
 
     const dispatch = useDispatch();
 
     const HandleSubmit = (values, { resetForm }) => {
-        console.log(values)
         const hike = {
             // id: newId,
             title: values.title,
@@ -25,7 +21,7 @@ const AddHikeForm = () => {
             dateVisited: values.dateVisited,
             favorite: null
         };
-        console.log('hike', hike);
+        
         dispatch(addHike(hike));
         resetForm();
     }
