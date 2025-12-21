@@ -4,7 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import homePageHero from '../app/images/IMG_5647.jpeg';
 import PreviewDisplay from '../components/PreviewDisplay';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
 
 
 
