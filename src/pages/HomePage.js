@@ -1,4 +1,7 @@
-import { Container, Row, Col, Button } from 'reactstrap';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
 import homePageHero from '../app/images/IMG_5647.jpeg';
 import PreviewDisplay from '../components/PreviewDisplay';
 import { Link } from 'react-router-dom'
@@ -23,21 +26,21 @@ const Home = () => {
                 <Row className='mt-3'>
                     <Col className='text-center mb-2'>
                         <Link to='/hiking-trails'>
-                            <Button className='home-page-row-btns'>
+                            <Button variant="secondary" className='home-page-row-btns'>
                                 Hikes
                             </Button>
                         </Link>
                     </Col>
                     <Col className='text-center mb-2'>
                         <Link to='/camping-spots'>
-                            <Button className='home-page-row-btns'>
+                            <Button variant="secondary" className='home-page-row-btns'>
                                 Campsites
                             </Button>
                         </Link>
                     </Col>
                     <Col className='text-center mb-2'>
                         <Link to='/scenic-overlooks'>
-                            <Button className='home-page-row-btns'>
+                            <Button variant="secondary" className='home-page-row-btns'>
                                 Overlooks
                             </Button>
                         </Link>
