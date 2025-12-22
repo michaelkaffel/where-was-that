@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -14,22 +14,24 @@ import imageThree from '../app/images/IMG_2448.jpeg';
 import imageFour from '../app/images/IMG_2241.jpeg';
 import imageFive from '../app/images/IMG_2448.jpeg';
 
+const imageArray = [
+    hikePlaceholderImg,
+    campsitePlaceholderImg,
+    overlookPlaceholderImg,
+    imageOne,
+    imageTwo,
+    imageThree,
+    imageFour,
+    imageFive
+]
+
+
+
 
 const AddLocationsPage = () => {
 
-    const imageArray = [
-        hikePlaceholderImg,
-        campsitePlaceholderImg,
-        overlookPlaceholderImg,
-        imageOne,
-        imageTwo,
-        imageThree,
-        imageFour,
-        imageFive
-    ]
-    console.log(Math.floor(Math.random() * imageArray.length))
-    const imageToShow = imageArray[Math.floor(Math.random() * imageArray.length)]
 
+    const imageToShow = imageArray[Math.floor(Math.random() * imageArray.length)]
 
 
 
