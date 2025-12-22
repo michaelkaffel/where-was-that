@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Container, Row } from 'reactstrap';
+import Container from 'react-bootstrap/Container';
 import { useParams } from 'react-router-dom';
 import { selectOverlooksById } from '../features/overlooks/overlooksSlice';
 import ItemDetails from '../components/ItemDetails';

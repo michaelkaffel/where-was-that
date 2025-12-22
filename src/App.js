@@ -29,7 +29,7 @@ function App() {
         <Route path='scenic-overlooks' element={<OverlooksPage />}/>
         <Route path='scenic-overlooks/:id' element={<OverlookDetailPage />}/>
       </Routes>
-      <Footer />
+      <Footer fixed="bottom" />
     </>
       
   );

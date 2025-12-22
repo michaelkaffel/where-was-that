@@ -1,7 +1,7 @@
-import { Container } from 'reactstrap';
+import Container from 'react-bootstrap/Container';
 import CampsitesList from '../features/campsites/CampsitesList';
 import SubHeaderCampsites from '../components/SubHeaderCampsites';
-import AccordianForCampsiteForm from '../features/campsites/AccordianForCampsiteForm';
+import AccordionForCampsiteForm from '../features/campsites/AccordionForCampsiteForm';
 
 
 const CampingSpotsPage = () => {
@@ -10,7 +10,7 @@ const CampingSpotsPage = () => {
             <Container>
                 <SubHeaderCampsites current='Camping Spots'/>
                 <h2 className='text-center'>Camping Spots</h2>
-                <AccordianForCampsiteForm />
+                <AccordionForCampsiteForm />
                 <CampsitesList />
             </Container>
         </>

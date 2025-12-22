@@ -1,7 +1,7 @@
-import { Container } from 'reactstrap';
+import Container from 'react-bootstrap/Container';
 import OverlooksList from '../features/overlooks/OverlooksList';
 import SubHeaderOverlooks from '../components/SubHeaderOverlooks';
-import AccordianForOverlookForm from '../features/overlooks/AccordianForOverlookForm';
+import AccordionForOverlookForm from '../features/overlooks/AccordionForOverlookForm';
 
 const OverlooksPage = () => {
     return (
@@ -9,7 +9,7 @@ const OverlooksPage = () => {
             <Container>
                 <SubHeaderOverlooks current='Scenic Overlooks' />
                 <h2 className='text-center'>Scenic Overlooks</h2>
-                <AccordianForOverlookForm />
+                <AccordionForOverlookForm />
                 <OverlooksList />
             </Container>
         </>

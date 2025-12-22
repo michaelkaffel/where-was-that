@@ -1,5 +1,5 @@
-import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
+
+import Card from 'react-bootstrap/Card';
 import placeHolderImg from '../app/images/hikesPlaceholder.png'
 
 
@@ -14,14 +14,14 @@ const PreviewCard = ({ item }) => {
 
     return (
         <Card className='m-3'>
-            <img alt="Sample" src={imageInsert}/>
-            <CardBody>
-                <CardTitle tag="h2">{title}</CardTitle>
-                <CardSubtitle className="mb-2 text-muted" tag="h6">
+            <Card.Img variant='top' alt={title} src={imageInsert}/>
+            <Card.Body>
+                <Card.Title tag="h2">{title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted" tag="h6">
                     {location}
-                </CardSubtitle>
-                <CardText>{description}</CardText>
-            </CardBody>
+                </Card.Subtitle>
+                <Card.Text>{description}</Card.Text>
+            </Card.Body>
         </Card>
     )
 };

@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { Button, FormGroup, Label } from 'reactstrap'
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { Formik, Field, Form as FForm, ErrorMessage } from 'formik';
 import { validateForm } from '../../utils/validateForm';
 import { addCampsite } from './campsitesSlice';
 
@@ -17,7 +18,7 @@ const AddCampsiteForm = () => {
             image: null,
             location: values.location,
             dateVisited: values.dateVisited,
-            favorite: null
+            favorite: false
         };
         
         dispatch(addCampsite(campsite))
@@ -34,57 +35,57 @@ const AddCampsiteForm = () => {
                 image: '',
                 location: '',
                 dateVisited: '',
-                favorite: null
+                favorite: false
             }}
             onSubmit={HandleSubmit}
             validate={validateForm}
         >
-            <Form>
-                <FormGroup>
-                    <Label htmlFor='title'>
+            <FForm>
+                <Form.Group>
+                    <Form.Label htmlFor='title'>
                         Title
-                    </Label>
+                    </Form.Label>
                     <Field name='title' placeholder='Name of your campground...' className='form-control' />
                     <ErrorMessage name='title'>
                         {(msg) => <p className='text-danger'>{msg}</p>}
                     </ErrorMessage>
-                </FormGroup>
+                </Form.Group>
                 
-                {/* <FormGroup>
-                    <Label htmlFor='googleMaps'>
+                {/* <Form.Group>
+                    <Form.Label htmlFor='googleMaps'>
                         Google Map
-                    </Label>
+                    </Form.Label>
                     <Field name='googleMap' placeholder='Paste Google Map code  <iframe src="https://www.google.com/maps/...' className='form-control' />
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor='image'>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label htmlFor='image'>
                         Image
-                    </Label>
+                    </Form.Label>
                     <Field name='image' placeholder='Paste URL of image here' className='form-control' />
-                </FormGroup> */}
-                <FormGroup>
-                    <Label htmlFor='location'>
+                </Form.Group> */}
+                <Form.Group>
+                    <Form.Label htmlFor='location'>
                         Location
-                    </Label>
+                    </Form.Label>
                     <Field name='location' placeholder='Ex: City, State' className='form-control' />
                     <ErrorMessage name='location'>
                         {(msg) => <p className='text-danger'>{msg}</p>}
                     </ErrorMessage>
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor='dateVisited'>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label htmlFor='dateVisited'>
                         Date Visited
-                    </Label>
+                    </Form.Label>
                     <Field name='dateVisited' type='date' className='form-control' />
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor='description'>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label htmlFor='description'>
                         Description
-                    </Label>
+                    </Form.Label>
                     <Field name='description' as='textarea' placeholder='Describe your campsite...' className='form-control' />
-                </FormGroup>
+                </Form.Group>
                 <Button type='submit' color='primary'>Add Hike!</Button>
-            </Form>
+            </FForm>
         </Formik>
 
     )

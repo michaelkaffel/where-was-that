@@ -6,13 +6,12 @@
 }
 
 body {
-    padding-top: 70px
+    padding-top: 80px
 }
 
-.cust-nav-link {
-    color: black
+.navbar-styles {
+    color: green;
 }
-
 
 .hero-title {
     font-size: 5rem;

@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Container, Row } from 'reactstrap';
+import Container from 'react-bootstrap/Container'
 import { useParams } from 'react-router-dom';
 import { selectCampsiteById } from '../features/campsites/campsitesSlice';
 import ItemDetails from '../components/ItemDetails';

@@ -1,4 +1,7 @@
-import { Col, Row, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { Link } from 'react-router-dom';
 
 const SubHeaderOverlooks = ({ current, detail }) => {
@@ -6,15 +9,15 @@ const SubHeaderOverlooks = ({ current, detail }) => {
         <Row>
             <Col>
                 <Breadcrumb>
-                    <BreadcrumbItem>
-                        <Link to='/'>Home</Link>
-                    </BreadcrumbItem>
+                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
+                        Home
+                    </Breadcrumb.Item>
                     {detail && (
-                        <BreadcrumbItem>
-                            <Link to='/scenic-overlooks'>Scenic Overlooks</Link>
-                        </BreadcrumbItem>
+                        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/scenic-overlooks" }}>
+                            Scenic Overlooks
+                        </Breadcrumb.Item>
                     )}
-                    <BreadcrumbItem active>{current}</BreadcrumbItem>
+                    <Breadcrumb.Item active>{current}</Breadcrumb.Item>
                 </Breadcrumb>
                 <hr />
             </Col>

@@ -1,4 +1,6 @@
-import { Row, Col, Container } from 'reactstrap'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { selectRandomCampsite } from "../features/campsites/campsitesSlice";
 import { selectRandomHike } from '../features/hikes/hikesSlice';
 import { selectRandomOverlook } from '../features/overlooks/overlooksSlice';
