@@ -1,7 +1,7 @@
 import littleRiver from '../images/IMG_2448.jpeg';
 import lakeAngeles from '../images/IMG_1109.jpeg';
 import constancePass from '../images/IMG_8998.jpeg';
-import overlookPlaceHolder from '../images/overlookPlaceholder.png'
+
 
 
 export const HIKINGTRAILS = [

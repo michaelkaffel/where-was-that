@@ -1,7 +1,7 @@
 import placeHolderImg from '../app/images/hikesPlaceholder.png'
 
 const ItemDetails = ({ item }) => {
-    const { id, image, title, description, location, googleMap } = item;
+    const { image, description, location, googleMap, title } = item;
 
     
 
@@ -13,7 +13,7 @@ const ItemDetails = ({ item }) => {
 
     return (
         <>
-            <img src={imageInsert} className='img-fluid' />
+            <img alt={title} src={imageInsert} className='img-fluid' />
             {googleMap}
             {location}
             <div>{googleMap}</div>
