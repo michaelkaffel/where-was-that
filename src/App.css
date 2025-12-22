@@ -9,6 +9,10 @@ body {
     padding-top: 80px
 }
 
+.navbar-styles {
+    color: green;
+}
+
 .hero-title {
     font-size: 5rem;
 }

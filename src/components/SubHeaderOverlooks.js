@@ -9,12 +9,12 @@ const SubHeaderOverlooks = ({ current, detail }) => {
         <Row>
             <Col>
                 <Breadcrumb>
-                    <Breadcrumb.Item>
-                        <Link to='/'>Home</Link>
+                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
+                        Home
                     </Breadcrumb.Item>
                     {detail && (
-                        <Breadcrumb.Item>
-                            <Link to='/scenic-overlooks'>Scenic Overlooks</Link>
+                        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/scenic-overlooks" }}>
+                            Scenic Overlooks
                         </Breadcrumb.Item>
                     )}
                     <Breadcrumb.Item active>{current}</Breadcrumb.Item>

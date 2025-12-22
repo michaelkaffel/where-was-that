@@ -8,12 +8,12 @@ const SubHeaderHikes = ({ current, detail }) => {
         <Row>
             <Col>
                 <Breadcrumb>
-                    <Breadcrumb.Item>
-                        <Link to='/'>Home</Link>
+                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }} >
+                        Home
                     </Breadcrumb.Item>
                     {detail && (
-                        <Breadcrumb.Item>
-                            <Link to='/hiking-trails'>Hiking Trails</Link>
+                        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/hiking-trails" }}>
+                            Hiking Trails
                         </Breadcrumb.Item>
                     )}
                     <Breadcrumb.Item active>{current}</Breadcrumb.Item>

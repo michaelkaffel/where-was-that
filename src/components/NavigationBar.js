@@ -21,7 +21,7 @@ function Navigationbar() {
     </span>
   )
   return (
-    <Navbar expand="lg" bg="light" data-bs-theme="light" fixed="top" >
+    <Navbar expand="md" bg='dark' className='navbar-styles' data-bs-theme="dark" fixed="top" >
       <Container>
         <Navbar.Brand to='/' as={Link} >Where Was That?</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
