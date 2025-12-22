@@ -13,7 +13,8 @@ export const HIKINGTRAILS = [
         image: littleRiver,
         location: 'Port Angeles, WA',
         dateVisited: '12/10/25',
-        favorite: false
+        favorite: false,
+        kindOfPlace: 'hike'
     },
     {
         id: 1,
@@ -23,7 +24,8 @@ export const HIKINGTRAILS = [
         image: lakeAngeles,
         location: 'Port Angeles, WA',
         dateVisited: '12/10/25',
-        favorite: false
+        favorite: false,
+        kindOfPlace: 'hike'
     },
     {
         id: 2,
@@ -33,6 +35,7 @@ export const HIKINGTRAILS = [
         image: constancePass,
         location: 'Brinnon, WA',
         dateVisited: '12/10/25',
-        favorite: false
+        favorite: false,
+        kindOfPlace: 'hike'
     }
 ]

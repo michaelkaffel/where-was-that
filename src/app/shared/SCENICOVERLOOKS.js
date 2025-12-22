@@ -12,7 +12,8 @@ export const SCENICOVERLOOKS = [
         image: blueMountain,
         location: 'Port Angeles, WA',
         dateVisited: '12/10/25',
-        favorite: false
+        favorite: false,
+        kindOfPlace: 'overlook'
     },
     {
         id: 1,
@@ -22,7 +23,8 @@ export const SCENICOVERLOOKS = [
         image: washingtonPass,
         location: 'Gilbert, WA',
         dateVisited: '12/10/25',
-        favorite: false
+        favorite: false,
+        kindOfPlace: 'overlook'
     },
     {
         id: 2,
@@ -32,6 +34,7 @@ export const SCENICOVERLOOKS = [
         image: hurricaneRidge,
         location: 'Port Angeles, WA',
         dateVisited: '12/10/25',
-        favorite: false
+        favorite: false,
+        kindOfPlace: 'overlook'
     }
 ]

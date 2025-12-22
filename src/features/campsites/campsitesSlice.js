@@ -16,6 +16,7 @@ const campsitesSlice = createSlice({
             const newCampsite = {
                 id: identifier,
                 key: identifier,
+                kindOfPlace: 'campsite',
                 ...action.payload
             };
             state.campsitesArray.push(newCampsite)

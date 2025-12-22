@@ -6,12 +6,20 @@ import { selectRandomOverlook } from '../features/overlooks/overlooksSlice';
 import AccordionForHikeForm from '../features/hikes/AccordionForHikeForm';
 import AccordionForOverlookForm from '../features/overlooks/AccordionForOverlookForm';
 import AccordionForCampsiteForm from '../features/campsites/AccordionForCampsiteForm';
+import placeHolderHikeImg from '../app/images/hikesPlaceholder.png';
 
 
 const AddLocationsPage = () => {
 
     const overlook = useSelector(selectRandomOverlook);
     const { image, title } = overlook
+    let imageToShow;
+    if (!image) {
+        imageToShow = placeHolderHikeImg
+    } else {
+        imageToShow = image
+    }
+
 
     return (
         <>
@@ -21,7 +29,7 @@ const AddLocationsPage = () => {
                         <AccordionForHikeForm className='mx-2' />
                         <AccordionForCampsiteForm />
                         <AccordionForOverlookForm />
-                        <img className='img-fluid mt-3 rounded' alt={title} src={image} />
+                        <img className='img-fluid mt-3 rounded' alt={title} src={imageToShow} />
                     </Col>
                 </Row>
             </Container>
