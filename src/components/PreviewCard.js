@@ -7,7 +7,7 @@ import overlookPlaceholderImg from '../app/images/overlookPlaceholder.png'
 
 const PreviewCard = ({ item }) => {
     const { image, title, description, location, kindOfPlace } = item
-    console.log(kindOfPlace)
+
     let imageInsert;
 
     if (!image) {
