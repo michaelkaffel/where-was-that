@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-import { removeCampsite, toggleFavorite } from './campsitesSlice'
+import { removeCampsite, toggleFavoriteCampsite } from './campsitesSlice'
 import campsitesPlaceHolderImg from '../../app/images/campsitesPlaceholder.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -18,16 +18,29 @@ const CampsiteCard = ({ campsite }) => {
 
     const { id, image, title, description, location, favorite } = campsite;
     let imageInsert;
-    let favoriteButton
 
     if (!image) {
         imageInsert = campsitesPlaceHolderImg   
     } else imageInsert = image
 
+    let favoriteButton;
+
     if (favorite) {
-        favoriteButton = <FontAwesomeIcon onClick={() => dispatch(toggleFavorite(campsite))} icon="fa-solid fa-heart" size="xl" />
+        favoriteButton = <FontAwesomeIcon 
+                            onClick={() => dispatch(
+                                                toggleFavoriteCampsite(campsite)
+                                        )}
+                            icon="fa-solid fa-heart" 
+                            size="xl" 
+                        />
     } else {
-        favoriteButton = <FontAwesomeIcon onClick={() => dispatch(toggleFavorite(campsite))} icon="fa-regular fa-heart" size="xl" />
+        favoriteButton = <FontAwesomeIcon 
+                            onClick={() => dispatch(
+                                                toggleFavoriteCampsite(campsite)
+                                )}
+                                icon="fa-regular fa-heart" 
+                                size="xl" 
+                            />
     }
 
     return (
