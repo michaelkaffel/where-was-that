@@ -11,12 +11,13 @@ import placeHolderHikeImg from '../app/images/hikesPlaceholder.png';
 
 const AddLocationsPage = () => {
 
+    let imageToShow = placeHolderHikeImg
+
     const overlook = useSelector(selectRandomOverlook);
-    const { image, title } = overlook
-    let imageToShow;
-    if (!image) {
-        imageToShow = placeHolderHikeImg
-    } else {
+    
+    
+    if (overlook) {
+        const { image } = overlook
         imageToShow = image
     }
 
@@ -29,7 +30,7 @@ const AddLocationsPage = () => {
                         <AccordionForHikeForm className='mx-2' />
                         <AccordionForCampsiteForm />
                         <AccordionForOverlookForm />
-                        <img className='img-fluid mt-3 rounded' alt={title} src={imageToShow} />
+                        <img className='img-fluid mt-3 rounded' alt='Beautiful scenery' src={imageToShow} />
                     </Col>
                 </Row>
             </Container>
