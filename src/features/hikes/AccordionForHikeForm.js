@@ -6,7 +6,7 @@ import AddHikeForm from './AddHikeForm';
 
   return (
     <>
-      <Accordion defaultActiveKey="0">
+      <Accordion>
         <Accordion.Item eventKey="0">
           <Accordion.Header>Add Hikes</Accordion.Header>
           <Accordion.Body>

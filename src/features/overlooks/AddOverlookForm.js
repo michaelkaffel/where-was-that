@@ -1,9 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { Button, FormGroup, Label } from 'reactstrap'
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { useDispatch } from 'react-redux';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form'
+import { Formik, Field, Form as FForm, ErrorMessage } from 'formik';
 import { addOverlook } from './overlooksSlice';
 import { validateForm } from '../../utils/validateForm';
-// import { selectAllHikes } from './hikesSlice';
+
 
 const AddOverlookForm = () => {
 
@@ -19,7 +20,7 @@ const AddOverlookForm = () => {
             image: null,
             location: values.location,
             dateVisited: values.dateVisited,
-            favorite: null
+            favorite: false
         };
 
         dispatch(addOverlook(overlook));
@@ -34,64 +35,52 @@ const AddOverlookForm = () => {
 
         <Formik
             initialValues={{
-                // id: newId,
+                
                 title: '',
                 description: '',
-                // googleMaps: '',
                 image: null,
                 location: '',
                 dateVisited: '',
-                favorite: null
+                favorite: false
             }}
             onSubmit={HandleSubmit}
             validate={validateForm}
         >
-            <Form>
-                <FormGroup>
-                    <Label htmlFor='title'>
+            <FForm>
+                <Form.Group>
+                    <Form.Label htmlFor='title'>
                         Title
-                    </Label>
+                    </Form.Label>
                     <Field name='title' placeholder='Name of your overlook...' className='form-control' />
                     <ErrorMessage name='title'>
                         {(msg) => <p className='text-danger'>{msg}</p>}
                     </ErrorMessage>
-                </FormGroup>
+                </Form.Group>
                 
-                {/* <FormGroup>
-                    <Label htmlFor='googleMaps'>
-                        Google Map
-                    </Label>
-                    <Field name='googleMap' placeholder='Paste Google Map code  <iframe src="https://www.google.com/maps/...' className='form-control' />
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor='image'>
-                        Image
-                    </Label>
-                    <Field name='image' placeholder='Paste URL of image here' className='form-control' />
-                </FormGroup> */}
-                <FormGroup>
-                    <Label htmlFor='location'>
+                
+                <Form.Group>
+                    <Form.Label htmlFor='location'>
                         Location
-                    </Label>
+                    </Form.Label>
                     <Field name='location' placeholder='Ex: City, State' className='form-control' />
                     <ErrorMessage name='location'>
                         {(msg) => <p className='text-danger'>{msg}</p>}
                     </ErrorMessage>
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor='dateVisited'>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label htmlFor='dateVisited'>
                         Date Visited
-                    </Label>
+                    </Form.Label>
                     <Field name='dateVisited' type='date' className='form-control' />
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor='description'>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label htmlFor='description'>
                         Description
-                    </Label>
+                    </Form.Label>
                     <Field name='description' as='textarea' placeholder='Describe your overlook...' className='form-control' />
-                </FormGroup>
+                </Form.Group>
                 <Button type='submit' color='primary'>Add Overlook!</Button>
-            </Form>
+            </FForm>
         </Formik>
 
     )

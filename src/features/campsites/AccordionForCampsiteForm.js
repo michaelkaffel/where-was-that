@@ -9,7 +9,7 @@ function AccordionForCampsiteForm() {
 
   return (
     <>
-      <Accordion defaultActiveKey="0">
+      <Accordion >
         <Accordion.Item eventKey="0">
           <Accordion.Header>Add Campsite</Accordion.Header>
           <Accordion.Body>

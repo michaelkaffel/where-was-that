@@ -6,7 +6,7 @@ function AccordionForOverlookForm() {
  
   return (
     <>
-      <Accordion defaultActiveKey="0">
+      <Accordion >
         <Accordion.Item eventKey="0">
           <Accordion.Header >Add Overlooks</Accordion.Header>
           <Accordion.Body>
