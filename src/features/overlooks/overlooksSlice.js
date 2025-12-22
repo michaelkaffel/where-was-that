@@ -24,13 +24,21 @@ const overlooksSlice = createSlice({
             state.overlooksArray = state.overlooksArray.filter(
                 (overlook) => overlook.id !==action.payload.id
             )
+        },
+        toggleFavoriteOverlook: (state, action) => {
+            const overlook = state.overlooksArray.find(
+                (overlook) => overlook.id === action.payload.id
+            );
+            if (overlook) {
+                overlook.favorite = !overlook.favorite
+            }
         }
     }
 });
 
 export const overlooksReducer = overlooksSlice.reducer;
 
-export const { addOverlook, removeOverlook } = overlooksSlice.actions;
+export const { addOverlook, removeOverlook, toggleFavoriteOverlook } = overlooksSlice.actions;
 
 export const selectAllOverlooks = (state) => {
     return state.overlooks.overlooksArray;

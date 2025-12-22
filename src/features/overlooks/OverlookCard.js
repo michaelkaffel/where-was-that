@@ -2,22 +2,46 @@ import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-import { removeOverlook } from './overlooksSlice';
+import { removeOverlook, toggleFavoriteOverlook } from './overlooksSlice';
 import overlookPlaceHolderImg from '../../app/images/overlookPlaceholder.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+
+
+library.add(fas, far)
 
 const OverlookCard = ({ overlook }) => {
 
     const dispatch = useDispatch();
 
-    
-
-    const { id, image, title, description, location } = overlook;
+    const { id, image, title, description, location, favorite } = overlook;
     let imageInsert;
     
-
     if (!image) {
         imageInsert = overlookPlaceHolderImg   
     } else imageInsert = image
+
+    let favoriteButton;
+
+    if (favorite) {
+        favoriteButton = favoriteButton = <FontAwesomeIcon 
+                            onClick={() => dispatch(
+                                                toggleFavoriteOverlook(overlook)
+                                        )}
+                            icon="fa-solid fa-heart" 
+                            size="xl" 
+                        />
+    } else {
+        favoriteButton = <FontAwesomeIcon 
+                            onClick={() => dispatch(
+                                                toggleFavoriteOverlook(overlook)
+                                )}
+                                icon="fa-regular fa-heart" 
+                                size="xl" 
+                            />
+    }
 
     return (
         <Card className='m-3'>
@@ -35,11 +59,13 @@ const OverlookCard = ({ overlook }) => {
                         </Button>
                     </Link>
                     <div>
-                        {/* <i className="fa-regular fa-heart fa-xl"></i> */}
-                        <i 
-                            className="fa-solid fa-trash-can fa-xl"
+                        {favoriteButton}
+
+                       <FontAwesomeIcon 
+                            icon='fa-solid fa-trash-can'
+                            size='xl'
                             onClick={() => dispatch(removeOverlook(overlook))}
-                            ></i>
+                            />
                     </div>
                 </div>
             </Card.Body>

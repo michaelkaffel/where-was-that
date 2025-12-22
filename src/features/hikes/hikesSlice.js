@@ -23,13 +23,21 @@ const hikesSlice = createSlice({
             state.hikesArray = state.hikesArray.filter(
                 (hike) => hike.id !== action.payload.id
             )
+        },
+        toggleFavoriteHike: (state, action) => {
+            const hike = state.hikesArray.find(
+                (hike) => hike.id === action.payload.id
+            );
+            if (hike) {
+                hike.favorite = !hike.favorite
+            }
         }
     }
 });
 
 export const hikesReducer = hikesSlice.reducer;
 
-export const { addHike, removeHike } = hikesSlice.actions;
+export const { addHike, removeHike, toggleFavoriteHike } = hikesSlice.actions;
 
 export const selectAllHikes = (state) => {
     return state.hikes.hikesArray;

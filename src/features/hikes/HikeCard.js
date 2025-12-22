@@ -2,19 +2,46 @@ import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-import { removeHike } from './hikesSlice';
+import { removeHike, toggleFavoriteHike } from './hikesSlice';
 import hikePlaceHolderImg from '../../app/images/hikesPlaceholder.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+
+
+library.add(fas, far)
 
 const HikeCard = ({ hike }) => {
 
     const dispatch = useDispatch();
 
-    const { id, image, title, description, location } = hike;
+    const { id, image, title, description, location, favorite } = hike;
     let imageInsert;
-
+    
     if (!image) {
         imageInsert = hikePlaceHolderImg   
     } else imageInsert = image
+
+    let favoriteButton;
+
+    if (favorite) {
+        favoriteButton = <FontAwesomeIcon 
+                                    onClick={() => dispatch(
+                                                        toggleFavoriteHike(hike)
+                                                )}
+                                    icon="fa-solid fa-heart" 
+                                    size="xl" 
+                                />
+    } else {
+        favoriteButton = <FontAwesomeIcon 
+                                    onClick={() => dispatch(
+                                                        toggleFavoriteHike(hike)
+                                        )}
+                                        icon="fa-regular fa-heart" 
+                                        size="xl" 
+                                    />
+    }
 
     return (
         <Card className='m-3'>
@@ -32,11 +59,12 @@ const HikeCard = ({ hike }) => {
                         </Button>
                     </Link>
                     <div>
-                        {/* <i className="fa-regular fa-heart fa-xl"></i> */}
-                        <i 
-                            className="fa-solid fa-trash-can fa-xl"
+                        {favoriteButton}
+                        <FontAwesomeIcon
+                            icon='fa-solid fa-trash-can'
+                            size='xl'
                             onClick={() => dispatch(removeHike(hike))}
-                            ></i>
+                            />
                     </div>
                 </div>
             </Card.Body>
