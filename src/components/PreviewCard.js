@@ -1,15 +1,28 @@
 
 import Card from 'react-bootstrap/Card';
-import placeHolderImg from '../app/images/hikesPlaceholder.png'
+import hikePlaceholderImg from '../app/images/hikesPlaceholder.png';
+import campsitePlaceholderImg from '../app/images/campsitesPlaceholder.png';
+import overlookPlaceholderImg from '../app/images/overlookPlaceholder.png'
 
 
 const PreviewCard = ({ item }) => {
-    const { image, title, description, location } = item
-
+    const { image, title, description, location, kindOfPlace } = item
+    console.log(kindOfPlace)
     let imageInsert;
 
     if (!image) {
-        imageInsert = placeHolderImg   
+        switch(kindOfPlace) {
+            case 'campsite':
+                imageInsert = campsitePlaceholderImg;
+                break;
+            case 'hike':
+                imageInsert = hikePlaceholderImg;
+                break;
+            case 'overlook':
+                imageInsert = overlookPlaceholderImg;
+                break;
+            default:
+        }   
     } else imageInsert = image
 
     return (

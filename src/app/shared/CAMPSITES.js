@@ -12,7 +12,7 @@ export const CAMPSITES = [
         location: 'Port Angeles, WA',
         dateVisited: '12/10/25',
         favorite: false,
-        type: 'campsite'
+        kindOfPlace: 'campsite'
     },
     {
         id: 1,
@@ -23,7 +23,7 @@ export const CAMPSITES = [
         location: 'Ozette, WA',
         dateVisited: '12/10/25',
         favorite: false,
-        type: 'campsite'
+        kindOfPlace: 'campsite'
     },
     {
         id: 2,
@@ -34,6 +34,6 @@ export const CAMPSITES = [
         location: 'Brinnon, WA',
         dateVisited: '12/10/25',
         favorite: false,
-        type: 'campsite'
+        kindOfPlace: 'campsite'
     },
 ]

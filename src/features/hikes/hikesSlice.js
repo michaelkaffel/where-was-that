@@ -15,6 +15,7 @@ const hikesSlice = createSlice({
             const newHike = {
                 id: identifier,
                 key: identifier,
+                kindOfPlace: 'hike',
                 ...action.payload
             };
             state.hikesArray.push(newHike);

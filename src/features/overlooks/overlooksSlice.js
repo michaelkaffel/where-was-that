@@ -16,6 +16,7 @@ const overlooksSlice = createSlice({
             const newOverlook = {
                 id: identifier,
                 key: identifier,
+                kindOfPlace: 'overlook',
                 ...action.payload
             };
             state.overlooksArray.push(newOverlook);
