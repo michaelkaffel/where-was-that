@@ -11,7 +11,7 @@ export const CAMPSITES = [
         image: saltCreek,
         location: 'Port Angeles, WA',
         dateVisited: '12/10/25',
-        favorite: null
+        favorite: false
     },
     {
         id: 1,
@@ -21,7 +21,7 @@ export const CAMPSITES = [
         image: ozetteTriangle,
         location: 'Ozette, WA',
         dateVisited: '12/10/25',
-        favorite: null
+        favorite: false
     },
     {
         id: 2,
@@ -31,6 +31,6 @@ export const CAMPSITES = [
         image: marmotPass,
         location: 'Brinnon, WA',
         dateVisited: '12/10/25',
-        favorite: null
+        favorite: false
     },
 ]

@@ -2,19 +2,33 @@ import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-import { removeCampsite } from './campsitesSlice'
+import { removeCampsite, toggleFavorite } from './campsitesSlice'
 import campsitesPlaceHolderImg from '../../app/images/campsitesPlaceholder.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+
+
+library.add(fas, far)
 
 const CampsiteCard = ({ campsite }) => {
 
     const dispatch = useDispatch();
 
-    const { id, image, title, description, location } = campsite;
+    const { id, image, title, description, location, favorite } = campsite;
     let imageInsert;
+    let favoriteButton
 
     if (!image) {
         imageInsert = campsitesPlaceHolderImg   
     } else imageInsert = image
+
+    if (favorite) {
+        favoriteButton = <FontAwesomeIcon onClick={() => dispatch(toggleFavorite(campsite))} icon="fa-solid fa-heart" size="xl" />
+    } else {
+        favoriteButton = <FontAwesomeIcon onClick={() => dispatch(toggleFavorite(campsite))} icon="fa-regular fa-heart" size="xl" />
+    }
 
     return (
         <Card className='m-3'>
@@ -32,11 +46,13 @@ const CampsiteCard = ({ campsite }) => {
                         </Button>
                     </Link>
                     <div>
-                        {/* <i className="fa-regular fa-heart fa-xl"></i> */}
-                        <i 
-                            className="fa-solid fa-trash-can fa-xl"
+                        {favoriteButton}
+                        
+                        <FontAwesomeIcon 
+                            icon='fa-solid fa-trash-can'
+                            size='xl'
                             onClick={() => dispatch(removeCampsite(campsite))}
-                            ></i>
+                            />
                     </div>
                 </div>
             </Card.Body>
