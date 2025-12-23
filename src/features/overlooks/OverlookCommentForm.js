@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { Formik, Field, Form as FForm, ErrorMessage } from 'formik';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Stack from 'react-bootstrap/Stack'
 import { addOverlookComment } from './overlooksCommentsSlice';
 import { validateCommentForm } from '../../utils/validateCommentForm'
 
@@ -22,7 +23,8 @@ const OverlookCommentForm = ({ overlookId }) => {
             overlookId: parseInt(overlookId),
             text: values.commentText,
             date: new Date(Date.now()).toISOString(),
-            key: uniqueId
+            key: uniqueId,
+            kindOfPlace: 'overlook'
         }
 
         dispatch(addOverlookComment(comment));
@@ -32,11 +34,13 @@ const OverlookCommentForm = ({ overlookId }) => {
 
     return (
         <>
-            <Button variant='primary' onClick={handleShow}>
+            <Stack direction="horizontal">
+            <Button className='ms-auto' variant='primary' onClick={handleShow}>
                 Add Comment!
             </Button>
+            </Stack>
 
-            <Modal show={show} ohHide={handleClose}>
+            <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Add A Comment</Modal.Title>
                 </Modal.Header>

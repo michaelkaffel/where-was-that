@@ -6,6 +6,7 @@ const HikeComment = ({ comment }) => {
     return (
         <>
             <p>{commentText}</p>
+            <hr />
         </>
     )
 };

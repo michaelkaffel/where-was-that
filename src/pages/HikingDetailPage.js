@@ -1,5 +1,8 @@
 import { useSelector } from 'react-redux';
 import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 import { useParams } from 'react-router-dom';
 import { selectHikeById } from '../features/hikes/hikesSlice';
 import ItemDetails from '../components/ItemDetails';
@@ -14,11 +17,25 @@ const HikingDetailPage = () => {
 
     return (
         <>
+
             <Container>
-                <SubHeader current={hike.title} detail={true} />
-                <h2>{title}</h2>
-                <ItemDetails item={hike} />
-                <HikesCommentsList hikeId={id} />
+                <Row>
+                    <Col>
+                        <SubHeader current={hike.title} detail={true} />
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col>
+                        <h2 className='text-center'>{title}</h2>
+                        <Card>
+                        <ItemDetails item={hike} />
+                        <Card.Footer>
+                        <HikesCommentsList hikeId={id} />
+                        </Card.Footer>
+                        </Card>
+                    </Col>
+                </Row>
             </Container>
         </>
     )

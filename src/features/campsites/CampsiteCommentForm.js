@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { Formik, Field, Form as FForm, ErrorMessage } from 'formik';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Stack from 'react-bootstrap/Stack';
 import { addCampComment } from './campsitesCommentsSlice';
 import { validateCommentForm } from '../../utils/validateCommentForm'
 
@@ -35,9 +36,11 @@ const CampsiteCommentForm = ({ campsiteId }) => {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                Add Comment!
-            </Button>
+            <Stack direction="horizontal">
+                <Button className='ms-auto' variant='primary' onClick={handleShow}>
+                    Add Comment!
+                </Button>
+            </Stack>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

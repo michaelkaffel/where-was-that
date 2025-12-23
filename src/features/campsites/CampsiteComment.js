@@ -6,6 +6,7 @@ const CampsiteComment = ({comment}) => {
     return (
         <>
             <p>{commentText}</p>
+            <hr />
         </>
     )
 };

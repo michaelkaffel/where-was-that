@@ -6,6 +6,7 @@ const OverlookComment = ({ comment }) => {
     return (
         <>
             <p>{commentText}</p>
+            <hr/>
         </>
     )
 };

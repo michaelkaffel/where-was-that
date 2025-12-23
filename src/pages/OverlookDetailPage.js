@@ -1,5 +1,8 @@
 import { useSelector } from 'react-redux';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 import { useParams } from 'react-router-dom';
 import { selectOverlooksById } from '../features/overlooks/overlooksSlice';
 import ItemDetails from '../components/ItemDetails';
@@ -17,10 +20,22 @@ const OverlookDetailPage = () => {
     return (
         <>
             <Container>
-                <SubHeaderOverlooks current={overlook.title} detail={true} />
-                <h2>{title}</h2>
-                <ItemDetails item={overlook} />
-                <OverlooksCommentsList overlookId={id} />
+                <Row>
+                    <Col>
+                        <SubHeaderOverlooks current={overlook.title} detail={true} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <h2 className='text-center'>{title}</h2>
+                        <Card>
+                            <ItemDetails item={overlook} />
+                            <Card.Footer>
+                                <OverlooksCommentsList overlookId={id} />
+                            </Card.Footer>
+                        </Card>
+                    </Col>Ï
+                </Row>
             </Container>
         </>
     )

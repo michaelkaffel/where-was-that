@@ -1,5 +1,8 @@
 import { useSelector } from 'react-redux';
-import Container from 'react-bootstrap/Container'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 import { useParams } from 'react-router-dom';
 import { selectCampsiteById } from '../features/campsites/campsitesSlice';
 import ItemDetails from '../components/ItemDetails';
@@ -14,12 +17,27 @@ const CampingDetailPage = () => {
 
     return (
         <>
-        <Container>
-            <SubHeaderCampsites current={campsite.title} detail={true} />
-            <h2>{title}</h2>
-            <ItemDetails item={campsite} />
-            <CampsitesCommentsList campsiteId={id} />
-        </Container>
+
+            <Container>
+                <Row>
+                    <Col>
+                        <SubHeaderCampsites current={campsite.title} detail={true} />
+                    </Col>
+                </Row>
+
+
+                <Row>
+                    <Col>
+                        <h2 className='text-center'>{title}</h2>
+                        <Card>
+                            <ItemDetails item={campsite} />
+                            <Card.Footer>
+                                <CampsitesCommentsList campsiteId={id} />
+                            </Card.Footer>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
         </>
     )
 }
