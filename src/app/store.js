@@ -4,6 +4,7 @@ import { campsitesReducer } from '../features/campsites/campsitesSlice';
 import { hikesReducer } from '../features/hikes/hikesSlice';
 import { overlooksReducer } from '../features/overlooks/overlooksSlice';
 import { campsitesCommentsReducer } from '../features/campsites/campsitesCommentsSlice';
+import { hikesCommentsReducer } from '../features/hikes/hikesCommentsSlice';
 
 
 export const store = configureStore({
@@ -11,7 +12,8 @@ export const store = configureStore({
       campsites: campsitesReducer,
       hikes: hikesReducer,
       overlooks: overlooksReducer,
-      campsitescomments: campsitesCommentsReducer
+      campsitescomments: campsitesCommentsReducer,
+      hikescomments: hikesCommentsReducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([logger])
 });

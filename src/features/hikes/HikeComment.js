@@ -1,6 +1,6 @@
 
 
-const CampsiteComment = ({comment}) => {
+const HikeComment = ({ comment }) => {
     const { text: commentText } = comment;
 
     return (
@@ -10,4 +10,4 @@ const CampsiteComment = ({comment}) => {
     )
 };
 
-export default CampsiteComment;
+export default HikeComment;

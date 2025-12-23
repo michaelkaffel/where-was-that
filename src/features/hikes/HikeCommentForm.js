@@ -4,14 +4,14 @@ import Form from 'react-bootstrap/Form';
 import { Formik, Field, Form as FForm, ErrorMessage } from 'formik';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { addCampComment } from './campsitesCommentsSlice';
-import { validateCommentForm } from '../../utils/validateCommentForm'
+import { addHikeComment } from './hikesCommentsSlice';
+import { validateCommentForm } from '../../utils/validateCommentForm';
 
-const CampsiteCommentForm = ({ campsiteId }) => {
+const HikeCommentForm = ({ hikeId }) => {
 
     const [show, setShow] = useState(false);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -21,21 +21,21 @@ const CampsiteCommentForm = ({ campsiteId }) => {
         const uniqueId = Math.floor(Math.random() * 1000);
 
         const comment = {
-            campsiteId: parseInt(campsiteId),
+            hikeId: parseInt(hikeId),
             text: values.commentText,
             date: new Date(Date.now()).toISOString(),
             key: uniqueId
 
         }
 
-        dispatch(addCampComment(comment));
+        dispatch(addHikeComment(comment));
         setShow(false)
 
     }
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant='primary' onClick={handleShow}>
                 Add Comment!
             </Button>
 
@@ -53,33 +53,31 @@ const CampsiteCommentForm = ({ campsiteId }) => {
                     >
                         <FForm>
                             <Form.Group>
-                                <Form.Label htmlFor='commentText' >Comment</Form.Label>
-                                <Field
-                                    name='commentText'
-                                    as='textarea'
-                                    placeholder='Add a comment!'
+                                <Form.Label htmlFor='commentText'>Comment</Form.Label>
+                                <Field 
+                                    name='commentText' 
+                                    as='textarea' 
+                                    placeholder='Add a comment' 
                                     className='form-control'
                                 />
                                 <ErrorMessage name='commentText'>
                                     {(msg) => <p className='text-danger'>{msg}</p>}
                                 </ErrorMessage>
                             </Form.Group>
-                            <Button type='submit' color="primary">
+                            <Button type='submit' color='primary'>
                                 Submit
                             </Button>
                         </FForm>
                     </Formik>
-
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant='secondary' onClick={handleClose}>
                         Close
                     </Button>
-
                 </Modal.Footer>
             </Modal>
         </>
     );
 };
 
-export default CampsiteCommentForm;
+export default HikeCommentForm;

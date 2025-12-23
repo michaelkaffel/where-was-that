@@ -13,23 +13,26 @@ const CampsitesCommentsList = ({ campsiteId }) => {
             <Col>
                 <h4>Comments</h4>
                 {comments.map((comment) => {
-                    return <CampsiteComment key={comment.id} comment={comment} />
+                    return <CampsiteComment 
+                                key={comment.id} 
+                                comment={comment}
+                            />
                 })}
                 <CampsiteCommentForm campsiteId={campsiteId}/>
             </Col>
         )
-    }
+    };
 
     return (
-        <Col md='5' className='m-1'>
+        <Col className='m-1'>
             <h4>Comments</h4>
             <p>There are no comments for this campsite yet.</p>
             <CampsiteCommentForm campsiteId={campsiteId}/>
             
             {/* <CommentForm campsiteId={campsiteId}/> */}
         </Col>
-    )
+    );
 
-}
+};
 
 export default CampsitesCommentsList;
