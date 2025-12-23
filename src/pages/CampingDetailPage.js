@@ -9,7 +9,6 @@ import CampsitesCommentsList from '../features/campsites/CampsitesCommentsList';
 const CampingDetailPage = () => {
 
     const { id } = useParams();
-    console.log(typeof parseInt(id));
     const campsite = useSelector(selectCampsiteById(id));
     const { title } = campsite
 

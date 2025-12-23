@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import Col from 'react-bootstrap/Col';
 import { selectCampsitesCommentsbyCampsiteId } from './campsitesCommentsSlice';
 import CampsiteComment from './CampsiteComment';
+import CampsiteCommentForm from './CampsiteCommentForm';
 
 
 const CampsitesCommentsList = ({ campsiteId }) => {
@@ -14,6 +15,7 @@ const CampsitesCommentsList = ({ campsiteId }) => {
                 {comments.map((comment) => {
                     return <CampsiteComment key={comment.id} comment={comment} />
                 })}
+                <CampsiteCommentForm campsiteId={campsiteId}/>
             </Col>
         )
     }
@@ -22,6 +24,7 @@ const CampsitesCommentsList = ({ campsiteId }) => {
         <Col md='5' className='m-1'>
             <h4>Comments</h4>
             <p>There are no comments for this campsite yet.</p>
+            <CampsiteCommentForm campsiteId={campsiteId}/>
             
             {/* <CommentForm campsiteId={campsiteId}/> */}
         </Col>
