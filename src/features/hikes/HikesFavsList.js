@@ -2,14 +2,14 @@ import { useSelector } from 'react-redux';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import HikeCard from './HikeCard';
-import { selectAllHikes } from './hikesSlice';
+import { selectFavoriteHikes } from './hikesSlice';
 
-const HikesList = () => {
-    const hikes = useSelector(selectAllHikes);
+const HikesFavList = () => {
+    const hikes = useSelector(selectFavoriteHikes);
 
     if (hikes.length === 0) {
         return (
-            <h4 className='text-center my-5'>Add some hikes!</h4>
+            <h4 className='text-center my-5'>Favorite some hikes!</h4>
         )
     }
 
@@ -30,4 +30,4 @@ const HikesList = () => {
     )
 };
 
-export default HikesList;
+export default HikesFavList;

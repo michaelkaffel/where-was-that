@@ -1,10 +1,13 @@
 import Container from 'react-bootstrap/Container';
-import HikesList from '../features/hikes/HikesList';
+import HikingTrailsDisplay from '../features/hikes/HikingTrailsDisplay';
 import SubHeaderHikes from '../components/SubHeaderHikes';
-import AccordionForHikeForm from '../features/hikes/AccordionForHikeForm'
+import AccordionForHikeForm from '../features/hikes/AccordionForHikeForm';
+
 
 
 const HikingTrailsPage = () => {
+
+
     return (
         <>
             <Container>
@@ -12,7 +15,8 @@ const HikingTrailsPage = () => {
                 
                 <h2 className='text-center'>Hiking Trails</h2>
                 <AccordionForHikeForm />
-                <HikesList />
+                
+                <HikingTrailsDisplay />
             </Container>
         </>
     )

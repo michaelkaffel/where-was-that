@@ -54,6 +54,10 @@ export const featuredHike = (state) => {
     return state.hikes.hikesArray.find((hike) => hike.featured);
 };
 
+export const selectFavoriteHikes = (state) => {
+    return state.hikes.hikesArray.filter((hike) => hike.favorite)
+}
+
 export const selectRandomHike = (state) => {
     return state.hikes.hikesArray[
         Math.floor(Math.random() * state.hikes.hikesArray.length)

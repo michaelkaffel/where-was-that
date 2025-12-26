@@ -54,7 +54,15 @@ export const selectCampsiteById = (id) => (state) => {
 };
 
 export const featuredCampsite = (state) => {
-    return state.campsites.campsitesArray.find((campsite) => campsite.featured);
+    return state.campsites.campsitesArray.find(
+        (campsite) => campsite.featured
+    );
+};
+
+export const selectFavoriteCampsites = (state) => {
+    return state.campsites.campsitesArray.filter(
+        (campsite) => campsite.favorite
+    ); 
 };
 
 export const selectRandomCampsite = (state) => {
