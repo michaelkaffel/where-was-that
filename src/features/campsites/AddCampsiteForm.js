@@ -51,18 +51,7 @@ const AddCampsiteForm = () => {
                     </ErrorMessage>
                 </Form.Group>
                 
-                {/* <Form.Group>
-                    <Form.Label htmlFor='googleMaps'>
-                        Google Map
-                    </Form.Label>
-                    <Field name='googleMap' placeholder='Paste Google Map code  <iframe src="https://www.google.com/maps/...' className='form-control' />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label htmlFor='image'>
-                        Image
-                    </Form.Label>
-                    <Field name='image' placeholder='Paste URL of image here' className='form-control' />
-                </Form.Group> */}
+               
                 <Form.Group>
                     <Form.Label htmlFor='location'>
                         Location
@@ -84,7 +73,7 @@ const AddCampsiteForm = () => {
                     </Form.Label>
                     <Field name='description' as='textarea' placeholder='Describe your campsite...' className='form-control' />
                 </Form.Group>
-                <Button type='submit' color='primary'>Add Hike!</Button>
+                <Button className='mt-3' type='submit' color='primary'>Add Hike!</Button>
             </FForm>
         </Formik>
 

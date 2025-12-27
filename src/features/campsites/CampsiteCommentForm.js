@@ -67,19 +67,18 @@ const CampsiteCommentForm = ({ campsiteId }) => {
                                     {(msg) => <p className='text-danger'>{msg}</p>}
                                 </ErrorMessage>
                             </Form.Group>
-                            <Button type='submit' color="primary">
-                                Submit
-                            </Button>
+                            <Stack direction="horizontal" className='mt-3' >
+                                <Button variant='secondary' onClick={handleClose}>
+                                    Close
+                                </Button>
+                                <Button className='ms-auto' type='submit' color="primary">
+                                    Submit
+                                </Button>
+                            </Stack>
                         </FForm>
                     </Formik>
 
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-
-                </Modal.Footer>
             </Modal>
         </>
     );

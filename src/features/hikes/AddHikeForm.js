@@ -90,7 +90,7 @@ const AddHikeForm = () => {
                     </Form.Label>
                     <Field name='description' required as='textarea' placeholder='Describe your hike...' className='form-control' />
                 </Form.Group>
-                <Button type='submit' color='primary'>Add Hike!</Button>
+                <Button className='mt-3' type='submit' color='primary'>Add Hike!</Button>
             </FForm>
         </Formik>
 

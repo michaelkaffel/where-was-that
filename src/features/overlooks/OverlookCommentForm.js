@@ -15,7 +15,7 @@ const OverlookCommentForm = ({ overlookId }) => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    
+
     const handleSubmit = (values) => {
         const uniqueId = Math.floor(Math.random() * 1000);
 
@@ -35,9 +35,9 @@ const OverlookCommentForm = ({ overlookId }) => {
     return (
         <>
             <Stack direction="horizontal">
-            <Button className='ms-auto' variant='primary' onClick={handleShow}>
-                Add Comment!
-            </Button>
+                <Button className='ms-auto' variant='primary' onClick={handleShow}>
+                    Add Comment!
+                </Button>
             </Stack>
 
             <Modal show={show} onHide={handleClose}>
@@ -65,18 +65,19 @@ const OverlookCommentForm = ({ overlookId }) => {
                                     {(msg) => <p className='text-danger'>{msg}</p>}
                                 </ErrorMessage>
                             </Form.Group>
-                            <Button type='submit' color="primary">
+                            <Stack direction="horizontal" className='mt-3' >
+                            <Button variant='secondary' onClick={handleClose}>
+                                Close
+                            </Button>
+                            <Button className='ms-auto' type='submit' color="primary">
                                 Submit
                             </Button>
+                            </Stack>
                         </FForm>
 
                     </Formik>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant='secondary' onClick={handleClose}>
-                        Close
-                    </Button>
-                </Modal.Footer>
+               
             </Modal>
         </>
     );

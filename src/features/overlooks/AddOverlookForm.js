@@ -79,7 +79,7 @@ const AddOverlookForm = () => {
                     </Form.Label>
                     <Field name='description' as='textarea' placeholder='Describe your overlook...' className='form-control' />
                 </Form.Group>
-                <Button type='submit' color='primary'>Add Overlook!</Button>
+                <Button className='mt-3' type='submit' color='primary'>Add Overlook!</Button>
             </FForm>
         </Formik>
 
