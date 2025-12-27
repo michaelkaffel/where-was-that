@@ -59,10 +59,16 @@ export const selectOverlooksByName = (title) => (state) => {
     return state.overlooks.overlooksArray.find(
         (overlook) => overlook.title === title
     )
+};
+
+export const selectFavoriteOverlooks = (state) => {
+    return state.overlooks.overlooksArray.filter(
+        (overlook) => overlook.favorite
+    )
 }
 
 export const selectRandomOverlook = (state) => {
     return state.overlooks.overlooksArray[
         Math.floor(Math.random() * state.overlooks.overlooksArray.length)
     ]
-}
+};
