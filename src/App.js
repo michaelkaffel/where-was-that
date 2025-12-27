@@ -17,7 +17,6 @@ function App() {
     <>
       
       <NavigationBar />
-      
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='add-locations' element={<AddLocationsPage/>}/>
