@@ -13,7 +13,25 @@ export const fetchCampsites = createAsyncThunk(
         const data = await response.json()
         return data;
     }
-)
+);
+
+export const postCampsite = createAsyncThunk(
+    'campsites/postCampsite',
+    async ( campsite, { dispatch } ) => {
+        const response = await fetch(baseUrl + 'comments', {
+            method: 'POST',
+            body: JSON.stringify(campsite),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (!response.ok) {
+            return Promise.reject('Unable to post, status: ' + response.status);
+        }
+        const data = await response.json()
+        dispatch(addCampsite(data))
+    }
+) 
 
 const initialState = {
     campsitesArray: [],
@@ -60,11 +78,18 @@ const campsitesSlice = createSlice({
         [fetchCampsites.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.errMsg = '';
-            state.campsitesArray = mapImageURL(action.payload)
+            state.campsitesArray = mapImageURL(action.payload);
+            console.log('test', state.campsitesArray)
         },
         [fetchCampsites.rejected]: (state, action) => {
             state.isLoading = false;
             state.errMsg = action.error ? action.error.message : 'Fetch failed'
+        },
+        [postCampsite.rejected]: (state, action) => {
+            alert(
+                'Your comment could not be posted\nError: ' +
+                (action.error ? action.error.message : 'Fetch failed')
+            )
         }
     }
 }

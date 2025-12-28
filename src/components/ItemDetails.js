@@ -35,7 +35,7 @@ const ItemDetails = ({ item }) => {
                             <Card.Body>
                                 
                                 <Card.Text>
-                                    <h3>{description}</h3>
+                                    {description}
                                 </Card.Text>
                                 <Card.Title className='text-end'>
                                     {location}

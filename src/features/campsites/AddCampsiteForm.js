@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Formik, Field, Form as FForm, ErrorMessage } from 'formik';
 import { validateForm } from '../../utils/validateForm';
-import { addCampsite } from './campsitesSlice';
+import { postCampsite } from './campsitesSlice';
 
 const AddCampsiteForm = () => {
 
@@ -21,7 +21,7 @@ const AddCampsiteForm = () => {
             favorite: false
         };
         
-        dispatch(addCampsite(campsite))
+        dispatch(postCampsite(campsite))
         resetForm();
     }
 
