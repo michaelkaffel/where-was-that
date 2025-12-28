@@ -11,7 +11,7 @@ const ItemDetails = ({ item }) => {
 
     let imageInsert;
 
-    if (!image) {
+    if (!image || image === "http://localhost:3001/null") {
         switch (kindOfPlace) {
             case 'campsite':
                 imageInsert = campsitePlaceholderImg;
@@ -27,10 +27,7 @@ const ItemDetails = ({ item }) => {
     } else imageInsert = image
 
     return (
-        <>
-            
-                    
-                       
+        <>         
                             <Card.Img variant='top' alt={title} src={imageInsert} />
                             <Card.Body>
                                 
@@ -42,10 +39,6 @@ const ItemDetails = ({ item }) => {
                                     
                                 </Card.Title>
                             </Card.Body>
-                       
-                    
-                
-
         </>
     )
 }

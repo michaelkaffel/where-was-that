@@ -18,7 +18,8 @@ const AddCampsiteForm = () => {
             image: null,
             location: values.location,
             dateVisited: values.dateVisited,
-            favorite: false
+            favorite: false,
+            kindOfPlace: 'campsite'
         };
         
         dispatch(postCampsite(campsite))
@@ -35,7 +36,8 @@ const AddCampsiteForm = () => {
                 image: '',
                 location: '',
                 dateVisited: '',
-                favorite: false
+                favorite: false,
+                kindOfPlace: 'campsite'
             }}
             onSubmit={HandleSubmit}
             validate={validateForm}

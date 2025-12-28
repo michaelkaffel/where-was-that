@@ -19,7 +19,7 @@ const CampsiteCard = ({ campsite }) => {
     const { id, image, title, description, location, favorite } = campsite;
     let imageInsert;
 
-    if (!image) {
+    if (!image || image === "http://localhost:3001/null") {
         imageInsert = campsitesPlaceHolderImg   
     } else imageInsert = image
 

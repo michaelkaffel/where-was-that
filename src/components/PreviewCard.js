@@ -10,7 +10,7 @@ const PreviewCard = ({ item }) => {
 
     let imageInsert;
 
-    if (!image) {
+    if (!image || image === "http://localhost:3001/null") {
         switch(kindOfPlace) {
             case 'campsite':
                 imageInsert = campsitePlaceholderImg;

@@ -18,7 +18,7 @@ export const fetchCampsites = createAsyncThunk(
 export const postCampsite = createAsyncThunk(
     'campsites/postCampsite',
     async ( campsite, { dispatch } ) => {
-        const response = await fetch(baseUrl + 'comments', {
+        const response = await fetch(baseUrl + 'campsites', {
             method: 'POST',
             body: JSON.stringify(campsite),
             headers: {
