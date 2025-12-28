@@ -73,7 +73,7 @@ const AddCampsiteForm = () => {
                     </Form.Label>
                     <Field name='description' as='textarea' placeholder='Describe your campsite...' className='form-control' />
                 </Form.Group>
-                <Button className='mt-3' type='submit' color='primary'>Add Hike!</Button>
+                <Button className='mt-3' type='submit' color='primary'>Add Campsite!</Button>
             </FForm>
         </Formik>
 
