@@ -1,3 +1,7 @@
+
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchCampsites } from './features/campsites/campsitesSlice';
 import { Routes, Route } from 'react-router-dom';
 import NavigationBar from "./components/NavigationBar";
 import Home from './pages/HomePage';
@@ -13,6 +17,13 @@ import Footer from './components/Footer';
 import './App.css';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCampsites())
+  }, [dispatch]);
+  
   return (
     <>
       
