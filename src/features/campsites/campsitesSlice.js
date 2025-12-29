@@ -33,6 +33,20 @@ export const postCampsite = createAsyncThunk(
     }
 ) 
 
+export const deleteCampsite = createAsyncThunk(
+    'campsites/deleteCampsite',
+    async ( campsite, { dispatch } ) => {
+        const response = await fetch(baseUrl + 'campsites/' + campsite.id, {
+            method: 'DELETE'
+        });
+        if (!response.ok) {
+            return Promise.reject('Unable to delete, status: ' + response.status)
+        }
+        const data = await response.json()
+        dispatch(removeCampsite(campsite.id))
+    }
+)
+
 const initialState = {
     campsitesArray: [],
     isLoading: true,
@@ -57,7 +71,7 @@ const campsitesSlice = createSlice({
         },
         removeCampsite: (state, action) => {
             state.campsitesArray = state.campsitesArray.filter(
-                (campsite) => campsite.id !== action.payload.id
+                (campsite) => campsite.id !== action.payload
             )
         },
         toggleFavoriteCampsite: (state, action) => {
@@ -88,6 +102,12 @@ const campsitesSlice = createSlice({
         [postCampsite.rejected]: (state, action) => {
             alert(
                 'Your comment could not be posted\nError: ' +
+                (action.error ? action.error.message : 'Fetch failed')
+            )
+        },
+        [deleteCampsite.rejected]: (state, action) => {
+            alert(
+                'Your campsite could not be deleted\nError: ' +
                 (action.error ? action.error.message : 'Fetch failed')
             )
         }
