@@ -18,7 +18,7 @@ const OverlooksList = () => {
             {overlooks.map((overlook) => {
                 return (
                     <Col
-                        md='4'
+                        lg='4'
                         key={overlook.id}
                     >
                         <OverlookCard overlook={overlook} />

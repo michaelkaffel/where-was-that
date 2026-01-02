@@ -43,7 +43,9 @@ export const deleteCampsite = createAsyncThunk(
             return Promise.reject('Unable to delete, status: ' + response.status)
         }
         const data = await response.json()
+        
         dispatch(removeCampsite(campsite.id))
+        return data
     }
 )
 
@@ -120,7 +122,7 @@ export const campsitesReducer = campsitesSlice.reducer;
 export const { addCampsite, removeCampsite, toggleFavoriteCampsite } = campsitesSlice.actions;
 
 export const selectAllCampsites = (state) => {
-    return state.campsites.campsitesArray;
+    return state.campsites.campsitesArray.toReversed();
 };
 
 export const selectCampsiteById = (id) => (state) => {
