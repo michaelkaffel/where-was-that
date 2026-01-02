@@ -42,7 +42,7 @@ export const overlooksReducer = overlooksSlice.reducer;
 export const { addOverlook, removeOverlook, toggleFavoriteOverlook } = overlooksSlice.actions;
 
 export const selectAllOverlooks = (state) => {
-    return state.overlooks.overlooksArray;
+    return state.overlooks.overlooksArray.toReversed();
 };
 
 export const selectOverlooksById = (id) => (state) => {
@@ -64,7 +64,7 @@ export const selectOverlooksByName = (title) => (state) => {
 export const selectFavoriteOverlooks = (state) => {
     return state.overlooks.overlooksArray.filter(
         (overlook) => overlook.favorite
-    )
+    ).toReversed()
 }
 
 export const selectRandomOverlook = (state) => {

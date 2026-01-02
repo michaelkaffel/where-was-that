@@ -49,6 +49,25 @@ export const deleteCampsite = createAsyncThunk(
     }
 )
 
+export const patchFavCampsite = createAsyncThunk(
+    'campsites/patchFavCampsite',
+    async ( campsite, { dispatch } ) => {
+        const response = await fetch(baseUrl + 'campsites/' + campsite.id, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ favorite: !campsite.favorite})
+        });
+        if (!response.ok) {
+            return Promise.reject('Unable to update status, status: ' + response.status)
+        }
+        const data = await response.json()
+        dispatch(toggleFavoriteCampsite(data.id))
+        return data
+    }
+)
+
 const initialState = {
     campsitesArray: [],
     isLoading: true,
@@ -78,7 +97,7 @@ const campsitesSlice = createSlice({
         },
         toggleFavoriteCampsite: (state, action) => {
             const campsite = state.campsitesArray.find(
-                (campsite) => campsite.id === action.payload.id
+                (campsite) => campsite.id === action.payload
             );
             if (campsite) {
                 campsite.favorite = !campsite.favorite
@@ -140,7 +159,7 @@ export const featuredCampsite = (state) => {
 export const selectFavoriteCampsites = (state) => {
     return state.campsites.campsitesArray.filter(
         (campsite) => campsite.favorite
-    ); 
+    ).toReversed(); 
 };
 
 export const selectRandomCampsite = (state) => {
