@@ -44,7 +44,7 @@ export const campsitesReducer = campsitesSlice.reducer;
 export const { addCampsite, removeCampsite, toggleFavoriteCampsite } = campsitesSlice.actions;
 
 export const selectAllCampsites = (state) => {
-    return state.campsites.campsitesArray;
+    return state.campsites.campsitesArray.toReversed();
 };
 
 export const selectCampsiteById = (id) => (state) => {

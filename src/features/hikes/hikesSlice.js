@@ -41,7 +41,7 @@ export const hikesReducer = hikesSlice.reducer;
 export const { addHike, removeHike, toggleFavoriteHike } = hikesSlice.actions;
 
 export const selectAllHikes = (state) => {
-    return state.hikes.hikesArray;
+    return state.hikes.hikesArray.toReversed();
 };
 
 export const selectHikeById = (id) => (state) => {
