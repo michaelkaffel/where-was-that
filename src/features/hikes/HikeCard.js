@@ -31,7 +31,8 @@ const HikeCard = ({ hike }) => {
                                                         toggleFavoriteHike(hike)
                                                 )}
                                     icon="fa-solid fa-heart" 
-                                    size="xl" 
+                                    size="xl"
+                                    color='red' 
                                 />
     } else {
         favoriteButton = <FontAwesomeIcon 
@@ -40,6 +41,7 @@ const HikeCard = ({ hike }) => {
                                         )}
                                         icon="fa-regular fa-heart" 
                                         size="xl" 
+                                        color='red'
                                     />
     }
 
