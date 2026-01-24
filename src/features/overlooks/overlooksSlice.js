@@ -42,7 +42,7 @@ export const overlooksReducer = overlooksSlice.reducer;
 export const { addOverlook, removeOverlook, toggleFavoriteOverlook } = overlooksSlice.actions;
 
 export const selectAllOverlooks = (state) => {
-    return state.overlooks.overlooksArray.toReversed;
+    return state.overlooks.overlooksArray.toReversed();
 };
 
 export const selectOverlooksById = (id) => (state) => {

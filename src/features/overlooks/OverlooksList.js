@@ -6,6 +6,7 @@ import { selectAllOverlooks } from './overlooksSlice';
 
 const OverlooksList = () => {
     const overlooks = useSelector(selectAllOverlooks);
+    console.log(overlooks)
 
     if (overlooks.length === 0) {
         return (

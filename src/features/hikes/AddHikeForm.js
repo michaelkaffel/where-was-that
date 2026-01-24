@@ -3,20 +3,27 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Formik, Field, Form as FForm, ErrorMessage } from 'formik';
 import { validateForm } from '../../utils/validateForm';
+import { processImage16x9 } from '../../utils/processImage16x9';
 import { addHike } from './hikesSlice';
 
 
 const AddHikeForm = () => {
 
-
     const dispatch = useDispatch();
 
-    const HandleSubmit = (values, { resetForm }) => {
+    const HandleSubmit = async (values, { resetForm }) => {
+
+        let processedImage = null;
+
+        if (values.image) {
+            processedImage = await processImage16x9(values.image)
+        }
+
         const hike = {
             
             title: values.title,
             description: values.description, 
-            image: null,
+            image: processedImage,
             location: values.location,
             dateVisited: values.dateVisited,
             favorite: false
@@ -26,19 +33,13 @@ const AddHikeForm = () => {
         resetForm();
     }
 
-
-
-
-
     return (
 
         <Formik
             initialValues={{
-                // id: newId,
                 title: '',
                 description: '',
-                // googleMaps: '',
-                image: '',
+                image: null,
                 location: '',
                 dateVisited: '',
                 favorite: false
@@ -46,7 +47,8 @@ const AddHikeForm = () => {
             onSubmit={HandleSubmit}
             validate={validateForm}
         >
-            <FForm>
+            {({setFieldValue, values }) => (
+                <FForm>
                 <Form.Group>
                     <Form.Label htmlFor='title'>
                         Title
@@ -56,19 +58,6 @@ const AddHikeForm = () => {
                         {(msg) => <p className='text-danger'>{msg}</p>}
                     </ErrorMessage>
                 </Form.Group>
-
-                {/* <Form.Group>
-                    <Form.Label htmlFor='googleMaps'>
-                        Google Map
-                    </Form.Label>
-                    <Field name='googleMap' placeholder='Paste Google Map code  <iframe src="https://www.google.com/maps/...' className='form-control' />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label htmlFor='image'>
-                        Image
-                    </Form.Label>
-                    <Field name='image' placeholder='Paste URL of image here' className='form-control' />
-                </Form.Group> */}
                 <Form.Group>
                     <Form.Label htmlFor='location'>
                         Location
@@ -90,8 +79,38 @@ const AddHikeForm = () => {
                     </Form.Label>
                     <Field name='description' required as='textarea' placeholder='Describe your hike...' className='form-control' />
                 </Form.Group>
+                <Form.Group>
+                    <div>
+                    <Form.Label htmlFor='description'>
+                        Image
+                    </Form.Label>
+                    </div>
+                    <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={(e) => {
+                            setFieldValue('image', e.currentTarget.files[0])
+                        }}
+                    />
+                    {values.image && (
+                        <small className='text-muted'>
+                            Selected: {values.image.name}
+                        </small>
+                    )}
+                    <div>
+                    {values.image && (
+                        <img 
+                            src={URL.createObjectURL(values.image)}
+                            alt='Preview'
+                            style={{ width: '50%', objectFit: 'cover', marginTop: 10 }}
+                        />
+                    )}
+                    </div>
+                </Form.Group>
+                
                 <Button className='mt-3' type='submit' color='primary'>Add Hike!</Button>
             </FForm>
+        )}
         </Formik>
 
     )

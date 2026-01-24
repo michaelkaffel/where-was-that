@@ -34,12 +34,11 @@ const ItemDetails = ({ item }) => {
                             <Card.Img variant='top' alt={title} src={imageInsert} />
                             <Card.Body>
                                 
-                                <Card.Text>
-                                    <h3>{description}</h3>
+                                <Card.Text style={{fontWeight: 500, fontSize: 20}}>
+                                    {description}
                                 </Card.Text>
-                                <Card.Title className='text-end'>
+                                <Card.Title style={{fontSize: 15, fontWeight: 300}} className='text-end'>
                                     {location}
-                                    
                                 </Card.Title>
                             </Card.Body>
                        
