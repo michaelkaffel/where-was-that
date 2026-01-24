@@ -32,6 +32,7 @@ const OverlookCard = ({ overlook }) => {
                                         )}
                             icon="fa-solid fa-heart" 
                             size="xl" 
+                            color='red'
                         />
     } else {
         favoriteButton = <FontAwesomeIcon 
@@ -40,6 +41,7 @@ const OverlookCard = ({ overlook }) => {
                                 )}
                                 icon="fa-regular fa-heart" 
                                 size="xl" 
+                                color='red'
                             />
     }
 
