@@ -32,6 +32,7 @@ const CampsiteCard = ({ campsite }) => {
                                         )}
                             icon="fa-solid fa-heart" 
                             size="xl" 
+                            color='red'
                         />
     } else {
         favoriteButton = <FontAwesomeIcon 
@@ -40,6 +41,7 @@ const CampsiteCard = ({ campsite }) => {
                                 )}
                                 icon="fa-regular fa-heart" 
                                 size="xl" 
+                                color='red'
                             />
     }
 
