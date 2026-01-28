@@ -114,7 +114,6 @@ const campsitesSlice = createSlice({
             state.isLoading = false;
             state.errMsg = '';
             state.campsitesArray = mapImageURL(action.payload);
-            console.log('test', state.campsitesArray)
         },
         [fetchCampsites.rejected]: (state, action) => {
             state.isLoading = false;
@@ -122,14 +121,14 @@ const campsitesSlice = createSlice({
         },
         [postCampsite.rejected]: (state, action) => {
             alert(
-                'Your comment could not be posted\nError: ' +
-                (action.error ? action.error.message : 'Fetch failed')
+                'Your campsite could not be posted\nError: ' +
+                (action.error ? action.error.message : 'POST failed')
             )
         },
         [deleteCampsite.rejected]: (state, action) => {
             alert(
                 'Your campsite could not be deleted\nError: ' +
-                (action.error ? action.error.message : 'Fetch failed')
+                (action.error ? action.error.message : 'DELETE failed')
             )
         }
     }

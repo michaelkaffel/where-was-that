@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col';
 import Accordion from 'react-bootstrap/Accordion';
 import AddCampsiteForm from '../features/campsites/AddCampsiteForm';
 import AddHikeForm from '../features/hikes/AddHikeForm';
-import addOverlookForm from '../features/overlooks/AddOverlookForm'
 import hikePlaceholderImg from '../app/images/hikesPlaceholder.png';
 import campsitePlaceholderImg from '../app/images/campsitesPlaceholder.png';
 import overlookPlaceholderImg from '../app/images/overlookPlaceholder.png';

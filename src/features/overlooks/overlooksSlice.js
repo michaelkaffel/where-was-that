@@ -1,5 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { SCENICOVERLOOKS } from "../../app/shared/SCENICOVERLOOKS";
+import { baseUrl } from "../../app/shared/baseUrl";
+import { mapImageURL } from "../../utils/mapImageURL";
+
+export const fetchOverlooks = createAsyncThunk(
+    'overlooks/fetchOverlooks',
+    async () => {
+        const response = await fetch (baseUrl + 'overlooks');
+        if (!response.ok) {
+            return Promise.reject('Unable to fetch, status: ' + response.status);
+        }
+        const data = await response.json()
+        return data;
+    }
+);
 
 const initialState = {
     overlooksArray: SCENICOVERLOOKS
