@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { HIKINGTRAILS } from '../../app/shared/HIKINGTRAILS';
+// import { baseUrl } from '../../app/shared/baseUrl';
+// import { mapImageURL } from '../../utils/mapImageURL';
 
 const initialState = {
     hikesArray: HIKINGTRAILS

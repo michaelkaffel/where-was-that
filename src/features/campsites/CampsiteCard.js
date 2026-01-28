@@ -66,7 +66,7 @@ const CampsiteCard = ({ campsite }) => {
                         <FontAwesomeIcon 
                             icon='fa-solid fa-trash-can'
                             size='xl'
-                            onClick={() => dispatch(deleteCampsite(campsite))}
+                            onClick={() => dispatch(deleteCampsite(campsite.id))}
                             />
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { SCENICOVERLOOKS } from "../../app/shared/SCENICOVERLOOKS";
+// import { SCENICOVERLOOKS } from "../../app/shared/SCENICOVERLOOKS";
 import { baseUrl } from "../../app/shared/baseUrl";
 import { mapImageURL } from "../../utils/mapImageURL";
 
@@ -16,7 +16,9 @@ export const fetchOverlooks = createAsyncThunk(
 );
 
 const initialState = {
-    overlooksArray: SCENICOVERLOOKS
+    overlooksArray: [],
+    isLoading: true,
+    errMsg: ''
 };
 
 const overlooksSlice = createSlice({
@@ -48,6 +50,22 @@ const overlooksSlice = createSlice({
                 overlook.favorite = !overlook.favorite
             }
         }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchOverlooks.pending, (state) => {
+                state.isLoading = true;
+                state.errMsg = '';
+            })
+            .addCase(fetchOverlooks.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.errMsg = '';
+                state.overlooksArray = mapImageURL(action.payload)
+            })
+            .addCase(fetchOverlooks.rejected, (state, action) => {
+                state.isLoading = false;
+                state.errMsg = action.error ? action.error.message : 'Fetch failed'
+            })
     }
 });
 

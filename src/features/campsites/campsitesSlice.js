@@ -17,7 +17,7 @@ export const fetchCampsites = createAsyncThunk(
 
 export const postCampsite = createAsyncThunk(
     'campsites/postCampsite',
-    async ( campsite, { dispatch } ) => {
+    async (campsite) => {
         const response = await fetch(baseUrl + 'campsites', {
             method: 'POST',
             body: JSON.stringify(campsite),
@@ -28,36 +28,36 @@ export const postCampsite = createAsyncThunk(
         if (!response.ok) {
             return Promise.reject('Unable to post, status: ' + response.status);
         }
-        const data = await response.json()
-        dispatch(addCampsite(data))
+        return await response.json()
+        // dispatch(addCampsite(data))
     }
-) 
+)
 
 export const deleteCampsite = createAsyncThunk(
     'campsites/deleteCampsite',
-    async ( campsite, { dispatch } ) => {
-        const response = await fetch(baseUrl + 'campsites/' + campsite.id, {
+    async (id) => {
+        const response = await fetch(baseUrl + 'campsites/' + id, {
             method: 'DELETE'
         });
         if (!response.ok) {
             return Promise.reject('Unable to delete, status: ' + response.status)
         }
-        const data = await response.json()
-        
-        dispatch(removeCampsite(campsite.id))
-        return data
+        return id;
+
+        // dispatch(removeCampsite(campsite.id))
+
     }
 )
 
 export const patchFavCampsite = createAsyncThunk(
     'campsites/patchFavCampsite',
-    async ( campsite, { dispatch } ) => {
+    async (campsite, { dispatch }) => {
         const response = await fetch(baseUrl + 'campsites/' + campsite.id, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ favorite: !campsite.favorite})
+            body: JSON.stringify({ favorite: !campsite.favorite })
         });
         if (!response.ok) {
             return Promise.reject('Unable to update status, status: ' + response.status)
@@ -78,23 +78,6 @@ const campsitesSlice = createSlice({
     name: 'campsites',
     initialState,
     reducers: {
-        addCampsite: (state, action) => {
-
-            const identifier = Math.floor(Math.random() * 10000);
-
-            const newCampsite = {
-                id: identifier,
-                key: identifier,
-                kindOfPlace: 'campsite',
-                ...action.payload
-            };
-            state.campsitesArray.push(newCampsite)
-        },
-        removeCampsite: (state, action) => {
-            state.campsitesArray = state.campsitesArray.filter(
-                (campsite) => campsite.id !== action.payload
-            )
-        },
         toggleFavoriteCampsite: (state, action) => {
             const campsite = state.campsitesArray.find(
                 (campsite) => campsite.id === action.payload
@@ -105,32 +88,43 @@ const campsitesSlice = createSlice({
 
         }
     },
-    extraReducers: {
-        [fetchCampsites.pending]: (state) => {
-            state.isLoading = true;
-            state.errMsg = '';
-        },
-        [fetchCampsites.fulfilled]: (state, action) => {
-            state.isLoading = false;
-            state.errMsg = '';
-            state.campsitesArray = mapImageURL(action.payload);
-        },
-        [fetchCampsites.rejected]: (state, action) => {
-            state.isLoading = false;
-            state.errMsg = action.error ? action.error.message : 'Fetch failed'
-        },
-        [postCampsite.rejected]: (state, action) => {
-            alert(
-                'Your campsite could not be posted\nError: ' +
-                (action.error ? action.error.message : 'POST failed')
-            )
-        },
-        [deleteCampsite.rejected]: (state, action) => {
-            alert(
-                'Your campsite could not be deleted\nError: ' +
-                (action.error ? action.error.message : 'DELETE failed')
-            )
-        }
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchCampsites.pending, (state) => {
+                state.isLoading = true;
+                state.errMsg = '';
+            })
+            .addCase(fetchCampsites.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.errMsg = '';
+                state.campsitesArray = mapImageURL(action.payload);
+            })
+            .addCase(fetchCampsites.rejected, (state, action) => {
+                state.isLoading = false;
+                state.errMsg = action.error ? action.error.message : 'Fetch failed'
+            })
+            .addCase(postCampsite.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.errMsg = '';
+                state.campsitesArray.push(action.payload)
+            })
+            .addCase(postCampsite.rejected, (state, action) => {
+                alert(
+                    'Your campsite could not be posted\nError: ' +
+                    (action.error ? action.error.message : 'POST failed')
+                )
+            })
+            .addCase(deleteCampsite.rejected, (state, action) => {
+                alert(
+                    'Your campsite could not be deleted\nError: ' +
+                    (action.error ? action.error.message : 'DELETE failed')
+                )
+            })
+            .addCase(deleteCampsite.fulfilled, (state, action) => {
+                state.campsitesArray = state.campsitesArray.filter(
+                    (campsite) => campsite.id !== action.payload
+                )
+            })
     }
 }
 );
@@ -158,7 +152,7 @@ export const featuredCampsite = (state) => {
 export const selectFavoriteCampsites = (state) => {
     return state.campsites.campsitesArray.filter(
         (campsite) => campsite.favorite
-    ).toReversed(); 
+    ).toReversed();
 };
 
 export const selectRandomCampsite = (state) => {

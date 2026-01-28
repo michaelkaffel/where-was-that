@@ -3,23 +3,34 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Formik, Field, Form as FForm, ErrorMessage } from 'formik';
 import { validateForm } from '../../utils/validateForm';
+import { processImage16x9 } from '../../utils/processImage16x9'
 import { postCampsite } from './campsitesSlice';
 
 const AddCampsiteForm = () => {
 
     const dispatch = useDispatch();
 
-    const HandleSubmit = (values, {resetForm }) => {
+    const HandleSubmit = async (values, { resetForm }) => {
+
+        const identifier = Math.floor(Math.random() * 10000);
+
+        let processedImage = null;
+
+        if (values.image) {
+            processedImage = await processImage16x9(values.image)
+        }
+        
 
         const campsite = {
             title: values.title,
             description: values.description, 
-            //googleMaps: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2666.750814726799!2d-123.50399052371729!3d48.057148856757124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548fb3ce7422ad01%3A0xd7fd95ceb6f6afec!2sLittle%20River%20Trail!5e0!3m2!1sen!2sus!4v1765433551258!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
-            image: null,
+            image: processedImage,
             location: values.location,
             dateVisited: values.dateVisited,
             favorite: false,
-            kindOfPlace: 'campsite'
+            kindOfPlace: 'campsite',
+            id: identifier,
+            key: identifier,
         };
         
         dispatch(postCampsite(campsite))
@@ -32,8 +43,7 @@ const AddCampsiteForm = () => {
             initialValues={{
                 title: '',
                 description: '',
-                // googleMaps: '',
-                image: '',
+                image: null,
                 location: '',
                 dateVisited: '',
                 favorite: false,
@@ -42,6 +52,7 @@ const AddCampsiteForm = () => {
             onSubmit={HandleSubmit}
             validate={validateForm}
         >
+            {({ setFieldValue, values }) => (
             <FForm>
                 <Form.Group>
                     <Form.Label htmlFor='title'>
@@ -75,8 +86,37 @@ const AddCampsiteForm = () => {
                     </Form.Label>
                     <Field name='description' as='textarea' placeholder='Describe your campsite...' className='form-control' />
                 </Form.Group>
-                <Button className='mt-3' type='submit' color='primary'>Add Hike!</Button>
+                <Form.Group>
+                        <div>
+                            <Form.Label htmlFor='description'>
+                                Image
+                            </Form.Label>
+                        </div>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                                setFieldValue('image', e.currentTarget.files[0])
+                            }}
+                        />
+                        {values.image && (
+                            <small className='text-muted'>
+                                Selected: {values.image.name}
+                            </small>
+                        )}
+                        <div>
+                            {values.image && (
+                                <img
+                                    src={URL.createObjectURL(values.image)}
+                                    alt='Preview'
+                                    style={{ width: '50%', objectFit: 'cover', marginTop: 10 }}
+                                />
+                            )}
+                        </div>
+                    </Form.Group>
+                <Button className='mt-3' type='submit' color='primary'>Add Campsite!</Button>
             </FForm>
+            )}
         </Formik>
 
     )
