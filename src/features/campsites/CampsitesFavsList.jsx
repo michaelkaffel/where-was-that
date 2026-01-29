@@ -3,12 +3,32 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CampsiteCard from "./CampsiteCard";
 import { selectFavoriteCampsites } from "./campsitesSlice";
+import Error from '../../components/Error';
+import Loading from '../../components/Loading';
 
 const CampsitesFavesList = () => {
     const campsites = useSelector(selectFavoriteCampsites);
+    const isLoading = useSelector((state) => state.hikes.isLoading);
+    const errMsg = useSelector((state) => state.hikes.errMsg);
+
+    if (isLoading) {
+        return (
+            <Row>
+                <Loading />
+            </Row>
+        );
+    };
+
+    if (errMsg) {
+        return (
+            <Row>
+                <Error errMsg={errMsg} />
+            </Row>
+        );
+    };
 
     if (campsites.length === 0) {
-        return(
+        return (
             <h4 className='text-center my-5'>Favorite some campsites!</h4>
         )
     }

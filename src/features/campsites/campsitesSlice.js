@@ -31,7 +31,7 @@ export const postCampsite = createAsyncThunk(
         return await response.json()
         // dispatch(addCampsite(data))
     }
-)
+);
 
 export const deleteCampsite = createAsyncThunk(
     'campsites/deleteCampsite',
@@ -47,7 +47,7 @@ export const deleteCampsite = createAsyncThunk(
         // dispatch(removeCampsite(campsite.id))
 
     }
-)
+);
 
 export const patchFavCampsite = createAsyncThunk(
     'campsites/patchFavCampsite',
@@ -60,11 +60,11 @@ export const patchFavCampsite = createAsyncThunk(
             body: JSON.stringify({ favorite: !campsite.favorite })
         });
         if (!response.ok) {
-            return Promise.reject('Unable to update status, status: ' + response.status)
+            return Promise.reject('Unable to patch, status: ' + response.status)
         }
-        const data = await response.json()
+        const data = await response.json();
         dispatch(toggleFavoriteCampsite(data.id))
-        return data
+        return data;
     }
 )
 

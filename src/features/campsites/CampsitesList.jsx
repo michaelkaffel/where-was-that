@@ -18,7 +18,7 @@ const CampsitesList = () => {
                 <Loading/>
             </Row>
         );
-    }
+    };
 
     if (errMsg) {
         return (
@@ -26,12 +26,9 @@ const CampsitesList = () => {
                 <Error errMsg={errMsg} />
             </Row>
         );
-    }
+    };
 
     if (campsites.length === 0) {
-
-        
-
         return(
             <h4 className='text-center my-5'>Add some campsites!</h4>
         )

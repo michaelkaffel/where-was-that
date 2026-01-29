@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-import { removeHike, toggleFavoriteHike } from './hikesSlice';
+import { deleteHike, patchFavHike } from './hikesSlice';
 import hikePlaceHolderImg from '../../app/images/hikesPlaceholder.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -19,7 +19,7 @@ const HikeCard = ({ hike }) => {
     const { id, image, title, description, location, favorite } = hike;
     let imageInsert;
     
-    if (!image) {
+    if (!image || image === 'http://localhost:3001/null') {
         imageInsert = hikePlaceHolderImg   
     } else imageInsert = image
 
@@ -28,7 +28,7 @@ const HikeCard = ({ hike }) => {
     if (favorite) {
         favoriteButton = <FontAwesomeIcon 
                                     onClick={() => dispatch(
-                                                        toggleFavoriteHike(hike)
+                                                        patchFavHike(hike)
                                                 )}
                                     icon="fa-solid fa-heart" 
                                     size="xl" 
@@ -37,7 +37,7 @@ const HikeCard = ({ hike }) => {
     } else {
         favoriteButton = <FontAwesomeIcon 
                                     onClick={() => dispatch(
-                                                        toggleFavoriteHike(hike)
+                                                        patchFavHike(hike)
                                         )}
                                         icon="fa-regular fa-heart" 
                                         size="xl" 
@@ -65,7 +65,7 @@ const HikeCard = ({ hike }) => {
                         <FontAwesomeIcon
                             icon='fa-solid fa-trash-can'
                             size='xl'
-                            onClick={() => dispatch(removeHike(hike))}
+                            onClick={() => dispatch(deleteHike(hike.id))}
                             />
                     </div>
                 </div>

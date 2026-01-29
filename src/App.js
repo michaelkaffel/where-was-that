@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCampsites } from './features/campsites/campsitesSlice';
 import { fetchOverlooks } from './features/overlooks/overlooksSlice';
+import { fetchHikes } from './features/hikes/hikesSlice';
 import { Routes, Route } from 'react-router-dom';
 import NavigationBar from "./components/NavigationBar";
 import Home from './pages/HomePage';
@@ -24,6 +25,7 @@ function App() {
   useEffect(() => {
     dispatch(fetchCampsites())
     dispatch(fetchOverlooks())
+    dispatch(fetchHikes())
   }, [dispatch]);
   
   return (

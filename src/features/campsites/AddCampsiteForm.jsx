@@ -20,7 +20,6 @@ const AddCampsiteForm = () => {
             processedImage = await processImage16x9(values.image)
         }
         
-
         const campsite = {
             title: values.title,
             description: values.description, 
@@ -63,8 +62,6 @@ const AddCampsiteForm = () => {
                         {(msg) => <p className='text-danger'>{msg}</p>}
                     </ErrorMessage>
                 </Form.Group>
-                
-               
                 <Form.Group>
                     <Form.Label htmlFor='location'>
                         Location
