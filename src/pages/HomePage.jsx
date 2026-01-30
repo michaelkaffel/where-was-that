@@ -27,21 +27,21 @@ const Home = () => {
                 <Row className='mt-3'>
                     <Col className='text-center mb-2'>
                         <Link to='/hiking-trails'>
-                            <Button variant="secondary" className='home-page-row-btns'>
+                            <Button variant="primary" className='home-page-row-btns'>
                                 Hikes
                             </Button>
                         </Link>
                     </Col>
                     <Col className='text-center mb-2'>
                         <Link to='/camping-spots'>
-                            <Button variant="secondary" className='home-page-row-btns'>
+                            <Button variant="primary" className='home-page-row-btns'>
                                 Campsites
                             </Button>
                         </Link>
                     </Col>
                     <Col className='text-center mb-2'>
                         <Link to='/scenic-overlooks'>
-                            <Button variant="secondary" className='home-page-row-btns'>
+                            <Button variant="primary" className='home-page-row-btns'>
                                 Overlooks
                             </Button>
                         </Link>
