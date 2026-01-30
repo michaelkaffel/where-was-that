@@ -1,42 +1,47 @@
 import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Form from 'react-bootstrap/Form'
 import { Formik, Field, Form as FForm, ErrorMessage } from 'formik';
 import { validateForm } from '../../utils/validateForm';
 import { processImage16x9 } from '../../utils/processImage16x9';
-import { postHike } from './hikesSlice';
+import { postOverlook } from './overlooksSlice'
 
 
-
-const AddHikeForm = () => {
+const AddOverlookForm = () => {
 
     const dispatch = useDispatch();
 
     const HandleSubmit = async (values, { resetForm }) => {
 
-        const hike = {
+        const overlook = {
             title: values.title,
             description: values.description,
             image: values.image,
             location: values.location,
             dateVisited: values.dateVisited,
             favorite: false,
-            kindOfPlace: 'hike',
+            kindOfPlace: 'overlook',
         };
 
-        dispatch(postHike(hike));
+        dispatch(postOverlook(overlook));
         resetForm();
     }
+
+
+
+
 
     return (
 
         <Formik
             initialValues={{
+
                 title: '',
                 description: '',
                 image: null,
                 location: '',
                 dateVisited: '',
+                favorite: false
             }}
             onSubmit={HandleSubmit}
             validate={validateForm}
@@ -47,7 +52,7 @@ const AddHikeForm = () => {
                         <Form.Label htmlFor='title'>
                             Title
                         </Form.Label>
-                        <Field name='title' placeholder='Name of your hike...' className='form-control' />
+                        <Field name='title' placeholder='Name of your overlook...' className='form-control' />
                         <ErrorMessage name='title'>
                             {(msg) => <p className='text-danger'>{msg}</p>}
                         </ErrorMessage>
@@ -65,13 +70,13 @@ const AddHikeForm = () => {
                         <Form.Label htmlFor='dateVisited'>
                             Date Visited
                         </Form.Label>
-                        <Field name='dateVisited' required type='date' className='form-control' />
+                        <Field name='dateVisited' type='date' className='form-control' />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='description'>
                             Description
                         </Form.Label>
-                        <Field name='description' required as='textarea' placeholder='Describe your hike...' className='form-control' />
+                        <Field name='description' as='textarea' placeholder='Describe your overlook...' className='form-control' />
                     </Form.Group>
                     <Form.Group>
                         <div>
@@ -105,7 +110,7 @@ const AddHikeForm = () => {
                             )}
                         </div>
                     </Form.Group>
-                    <Button className='mt-3' type='submit' color='primary'>Add Hike!</Button>
+                    <Button className='mt-3' type='submit' color='primary'>Add Overlook!</Button>
                 </FForm>
             )}
         </Formik>
@@ -113,4 +118,4 @@ const AddHikeForm = () => {
     )
 }
 
-export default AddHikeForm;
+export default AddOverlookForm;

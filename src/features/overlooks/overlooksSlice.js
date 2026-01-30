@@ -10,10 +10,58 @@ export const fetchOverlooks = createAsyncThunk(
         if (!response.ok) {
             return Promise.reject('Unable to fetch, status: ' + response.status);
         }
-        const data = await response.json()
-        return data;
+        return await response.json()
     }
 );
+
+export const postOverlook = createAsyncThunk(
+    'overlooks/postOverlook',
+    async (overlook) => {
+        const response = await fetch(baseUrl + 'overlooks', {
+            method: 'POST',
+            body: JSON.stringify(overlook),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (!response.ok) {
+            return Promise.reject('Unable to post, status: ' + response.status)
+        }
+        return await response.json()
+    }
+);
+
+export const deleteOverlook = createAsyncThunk(
+    'overlooks/deleteOverlook',
+    async (id) => {
+        const response = await fetch(baseUrl + 'overlooks/' + id, {
+            method: 'DELETE'
+        });
+        if (!response.ok) {
+            return Promise.reject('Unable to delete, status: ' + response.status)
+        }
+        return id;
+    }
+);
+
+export const patchFavOverlook = createAsyncThunk(
+    'overlooks/patchFavOverlook',
+    async (overlook, {dispatch }) => {
+        const response = await fetch(baseUrl + 'overlooks/' + overlook.id, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ favorite: !overlook.favorite })
+        });
+        if (!response.ok) {
+            return Promise.reject('Unable to patch, status: ' + response.status)
+        }
+        const data = await response.json()
+        dispatch(toggleFavoriteOverlook(data.id))
+        return data;
+    }
+)
 
 const initialState = {
     overlooksArray: [],
@@ -25,26 +73,9 @@ const overlooksSlice = createSlice({
     name: 'overlooks',
     initialState,
     reducers: {
-        addOverlook: (state, action) => {
-
-            const identifier = Math.floor(Math.random() * 10000 );
-
-            const newOverlook = {
-                id: identifier,
-                key: identifier,
-                kindOfPlace: 'overlook',
-                ...action.payload
-            };
-            state.overlooksArray.push(newOverlook);
-        },
-        removeOverlook: (state, action) => {
-            state.overlooksArray = state.overlooksArray.filter(
-                (overlook) => overlook.id !==action.payload.id
-            )
-        },
         toggleFavoriteOverlook: (state, action) => {
             const overlook = state.overlooksArray.find(
-                (overlook) => overlook.id === action.payload.id
+                (overlook) => overlook.id === action.payload
             );
             if (overlook) {
                 overlook.favorite = !overlook.favorite
@@ -66,12 +97,40 @@ const overlooksSlice = createSlice({
                 state.isLoading = false;
                 state.errMsg = action.error ? action.error.message : 'Fetch failed'
             })
+            .addCase(postOverlook.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.errMsg = '';
+                state.overlooksArray.push(action.payload)
+            })
+            .addCase(postOverlook.rejected, (state, action) => {
+                alert(
+                    'Your overlook could not be posted\nError: ' +
+                    (action.error ? action.error.message : 'POST failed')
+                )
+            })
+            .addCase(deleteOverlook.fulfilled, (state, action) => {
+                state.overlooksArray = state.overlooksArray.filter(
+                    (overlook) => overlook.id !== action.payload
+                )
+            })
+            .addCase(deleteOverlook.rejected, (state, action) => {
+                alert(
+                    'Your overlook could not be deleted\nError: ' +
+                    (action.error ? action.error.message : 'DELETE failed')
+                )
+            })
+            .addCase(patchFavOverlook.rejected, (state, action) => {
+                alert(
+                    'Your overlook could not be favorited\nError: ' +
+                    (action.error ? action.error.message : 'PATCH failed')
+                )
+            })
     }
 });
 
 export const overlooksReducer = overlooksSlice.reducer;
 
-export const { addOverlook, removeOverlook, toggleFavoriteOverlook } = overlooksSlice.actions;
+export const { toggleFavoriteOverlook } = overlooksSlice.actions;
 
 export const selectAllOverlooks = (state) => {
     return state.overlooks.overlooksArray.toReversed();

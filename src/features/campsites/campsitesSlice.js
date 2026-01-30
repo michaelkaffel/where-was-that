@@ -10,8 +10,7 @@ export const fetchCampsites = createAsyncThunk(
         if (!response.ok) {
             return Promise.reject('Unable to fetch, status: ' + response.status)
         }
-        const data = await response.json()
-        return data;
+        return await response.json()
     }
 );
 
@@ -114,15 +113,21 @@ const campsitesSlice = createSlice({
                     (action.error ? action.error.message : 'POST failed')
                 )
             })
+            .addCase(deleteCampsite.fulfilled, (state, action) => {
+                state.campsitesArray = state.campsitesArray.filter(
+                    (campsite) => campsite.id !== action.payload
+                )
+            })
             .addCase(deleteCampsite.rejected, (state, action) => {
                 alert(
                     'Your campsite could not be deleted\nError: ' +
                     (action.error ? action.error.message : 'DELETE failed')
                 )
             })
-            .addCase(deleteCampsite.fulfilled, (state, action) => {
-                state.campsitesArray = state.campsitesArray.filter(
-                    (campsite) => campsite.id !== action.payload
+            .addCase(patchFavCampsite.rejected, (state, action) => {
+                alert(
+                    'Your campsite could not be favorited\nError: ' +
+                    (action.error ? action.error.message : 'PATCH failed')
                 )
             })
     }
@@ -131,7 +136,7 @@ const campsitesSlice = createSlice({
 
 export const campsitesReducer = campsitesSlice.reducer;
 
-export const { addCampsite, removeCampsite, toggleFavoriteCampsite } = campsitesSlice.actions;
+export const { toggleFavoriteCampsite } = campsitesSlice.actions;
 
 export const selectAllCampsites = (state) => {
     return state.campsites.campsitesArray.toReversed();

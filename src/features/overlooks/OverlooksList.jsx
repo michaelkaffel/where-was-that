@@ -3,9 +3,30 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import OverlookCard from './OverlookCard';
 import { selectAllOverlooks } from './overlooksSlice';
+import Error from '../../components/Error';
+import Loading from '../../components/Loading';
 
 const OverlooksList = () => {
+
     const overlooks = useSelector(selectAllOverlooks);
+    const isLoading = useSelector((state) => state.overlooks.isLoading);
+    const errMsg = useSelector((state) => state.overlooks.errMsg);
+
+    if (isLoading) {
+        return (
+            <Row>
+                <Loading/>
+            </Row>
+        );
+    };
+
+    if (errMsg) {
+        return (
+            <Row>
+                <Error errMsg={errMsg} />
+            </Row>
+        );
+    };
 
     if (overlooks.length === 0) {
         return (

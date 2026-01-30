@@ -2,12 +2,13 @@ import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-import { removeOverlook, toggleFavoriteOverlook } from './overlooksSlice';
+import { deleteOverlook, patchFavOverlook } from './overlooksSlice';
 import overlookPlaceHolderImg from '../../app/images/overlookPlaceholder.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
+
 
 
 library.add(fas, far)
@@ -19,7 +20,7 @@ const OverlookCard = ({ overlook }) => {
     const { id, image, title, description, location, favorite } = overlook;
     let imageInsert;
     
-    if (!image) {
+    if (!image || image === "http://localhost:3001/null") {
         imageInsert = overlookPlaceHolderImg   
     } else imageInsert = image
 
@@ -28,7 +29,7 @@ const OverlookCard = ({ overlook }) => {
     if (favorite) {
         favoriteButton = favoriteButton = <FontAwesomeIcon 
                             onClick={() => dispatch(
-                                                toggleFavoriteOverlook(overlook)
+                                                patchFavOverlook(overlook)
                                         )}
                             icon="fa-solid fa-heart" 
                             size="xl" 
@@ -37,7 +38,7 @@ const OverlookCard = ({ overlook }) => {
     } else {
         favoriteButton = <FontAwesomeIcon 
                             onClick={() => dispatch(
-                                                toggleFavoriteOverlook(overlook)
+                                                patchFavOverlook(overlook)
                                 )}
                                 icon="fa-regular fa-heart" 
                                 size="xl" 
@@ -66,7 +67,7 @@ const OverlookCard = ({ overlook }) => {
                        <FontAwesomeIcon 
                             icon='fa-solid fa-trash-can'
                             size='xl'
-                            onClick={() => dispatch(removeOverlook(overlook))}
+                            onClick={() => dispatch(deleteOverlook(overlook.id))}
                             />
                     </div>
                 </div>

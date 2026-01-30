@@ -10,28 +10,18 @@ const AddCampsiteForm = () => {
 
     const dispatch = useDispatch();
 
-    const HandleSubmit = async (values, { resetForm }) => {
+    const handleSubmit = async (values, { resetForm }) => {
 
-        const identifier = Math.floor(Math.random() * 10000);
-
-        let processedImage = null;
-
-        if (values.image) {
-            processedImage = await processImage16x9(values.image)
-        }
-        
         const campsite = {
             title: values.title,
-            description: values.description, 
-            image: processedImage,
+            description: values.description,
+            image: values.image,
             location: values.location,
             dateVisited: values.dateVisited,
             favorite: false,
             kindOfPlace: 'campsite',
-            id: identifier,
-            key: identifier,
         };
-        
+
         dispatch(postCampsite(campsite))
         resetForm();
     }
@@ -48,42 +38,42 @@ const AddCampsiteForm = () => {
                 favorite: false,
                 kindOfPlace: 'campsite'
             }}
-            onSubmit={HandleSubmit}
+            onSubmit={handleSubmit}
             validate={validateForm}
         >
             {({ setFieldValue, values }) => (
-            <FForm>
-                <Form.Group>
-                    <Form.Label htmlFor='title'>
-                        Title
-                    </Form.Label>
-                    <Field name='title' placeholder='Name of your campground...' className='form-control' />
-                    <ErrorMessage name='title'>
-                        {(msg) => <p className='text-danger'>{msg}</p>}
-                    </ErrorMessage>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label htmlFor='location'>
-                        Location
-                    </Form.Label>
-                    <Field name='location' placeholder='Ex: City, State' className='form-control' />
-                    <ErrorMessage name='location'>
-                        {(msg) => <p className='text-danger'>{msg}</p>}
-                    </ErrorMessage>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label htmlFor='dateVisited'>
-                        Date Visited
-                    </Form.Label>
-                    <Field name='dateVisited' type='date' className='form-control' />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label htmlFor='description'>
-                        Description
-                    </Form.Label>
-                    <Field name='description' as='textarea' placeholder='Describe your campsite...' className='form-control' />
-                </Form.Group>
-                <Form.Group>
+                <FForm>
+                    <Form.Group>
+                        <Form.Label htmlFor='title'>
+                            Title
+                        </Form.Label>
+                        <Field name='title' placeholder='Name of your campground...' className='form-control' />
+                        <ErrorMessage name='title'>
+                            {(msg) => <p className='text-danger'>{msg}</p>}
+                        </ErrorMessage>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label htmlFor='location'>
+                            Location
+                        </Form.Label>
+                        <Field name='location' placeholder='Ex: City, State' className='form-control' />
+                        <ErrorMessage name='location'>
+                            {(msg) => <p className='text-danger'>{msg}</p>}
+                        </ErrorMessage>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label htmlFor='dateVisited'>
+                            Date Visited
+                        </Form.Label>
+                        <Field name='dateVisited' type='date' className='form-control' />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label htmlFor='description'>
+                            Description
+                        </Form.Label>
+                        <Field name='description' as='textarea' placeholder='Describe your campsite...' className='form-control' />
+                    </Form.Group>
+                    <Form.Group>
                         <div>
                             <Form.Label htmlFor='description'>
                                 Image
@@ -92,8 +82,12 @@ const AddCampsiteForm = () => {
                         <input
                             type="file"
                             accept="image/*"
-                            onChange={(e) => {
-                                setFieldValue('image', e.currentTarget.files[0])
+                            onChange={async (e) => {
+                                const file = e.currentTarget.files[0];
+                                if (!file) return;
+
+                                const processed = await processImage16x9(file)
+                                setFieldValue('image', processed)
                             }}
                         />
                         {values.image && (
@@ -104,15 +98,15 @@ const AddCampsiteForm = () => {
                         <div>
                             {values.image && (
                                 <img
-                                    src={URL.createObjectURL(values.image)}
+                                    src={values.image}
                                     alt='Preview'
                                     style={{ width: '50%', objectFit: 'cover', marginTop: 10 }}
                                 />
                             )}
                         </div>
                     </Form.Group>
-                <Button className='mt-3' type='submit' color='primary'>Add Campsite!</Button>
-            </FForm>
+                    <Button className='mt-3' type='submit' color='primary'>Add Campsite!</Button>
+                </FForm>
             )}
         </Formik>
 

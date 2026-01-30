@@ -11,7 +11,7 @@ export const fetchHikes = createAsyncThunk(
             return Promise.reject('Unabe to fetch, status: ' + response.status);
         }
         return await response.json()
-        
+
     }
 );
 
@@ -105,7 +105,7 @@ const hikesSlice = createSlice({
             })
             .addCase(postHike.rejected, (state, action) => {
                 alert(
-                    'Your campsite could not be posted\nError: ' +
+                    'Your hike could not be posted\nError: ' +
                     (action.error ? action.error.message : 'POST failed')
                 )
             })
@@ -116,8 +116,14 @@ const hikesSlice = createSlice({
             })
             .addCase(deleteHike.rejected, (state, action) => {
                 alert(
-                    'Your campsite could not be deleted\nError: ' +
+                    'Your hike could not be deleted\nError: ' +
                     (action.error ? action.error.message : 'DELETE failed')
+                )
+            })
+            .addCase(patchFavHike.rejected, (state, action) => {
+                alert(
+                    'Your hike could not be favorited\nError: ' +
+                    (action.error ? action.error.message : 'PATCH failed')
                 )
             })
     }
@@ -125,7 +131,7 @@ const hikesSlice = createSlice({
 
 export const hikesReducer = hikesSlice.reducer;
 
-export const { addHike, removeHike, toggleFavoriteHike } = hikesSlice.actions;
+export const { toggleFavoriteHike } = hikesSlice.actions;
 
 export const selectAllHikes = (state) => {
     return state.hikes.hikesArray.toReversed();
