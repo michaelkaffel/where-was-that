@@ -13,7 +13,7 @@ const CampsitesCommentsList = ({ campsiteId }) => {
     if (comments && comments.length > 0) {
         return (
             <Col>
-                <h4>Comments</h4>
+                <h4 className='mb-3 text-center text-decoration-underline'>Comments</h4>
                 {comments.map((comment) => {
                     return <CampsiteComment
                         key={comment.id}
@@ -27,11 +27,9 @@ const CampsitesCommentsList = ({ campsiteId }) => {
 
     return (
         <Col className='m-1'>
-            <h4>Comments</h4>
+            <h4 className='mb-3 text-center text-decoration-underline'>Comments</h4>
             <p>There are no comments for this campsite yet.</p>
             <CampsiteCommentForm campsiteId={campsiteId} />
-
-            {/* <CommentForm campsiteId={campsiteId}/> */}
         </Col>
     );
 

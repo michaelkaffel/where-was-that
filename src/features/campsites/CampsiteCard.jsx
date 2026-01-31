@@ -17,6 +17,7 @@ const CampsiteCard = ({ campsite }) => {
     const dispatch = useDispatch();
 
     const { id, image, title, description, location, favorite } = campsite;
+    
     let imageInsert;
 
     if (!image || image === "http://localhost:3001/null") {

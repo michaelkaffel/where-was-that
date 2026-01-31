@@ -5,7 +5,7 @@ import { Formik, Field, Form as FForm, ErrorMessage } from 'formik';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Stack from 'react-bootstrap/Stack';
-import { addCampComment } from './campsitesCommentsSlice';
+import { postCampsiteComment } from './campsitesCommentsSlice';
 import { validateCommentForm } from '../../utils/validateCommentForm'
 
 const CampsiteCommentForm = ({ campsiteId }) => {
@@ -19,17 +19,17 @@ const CampsiteCommentForm = ({ campsiteId }) => {
 
     const handleSubmit = (values) => {
 
-        const uniqueId = Math.floor(Math.random() * 1000);
+        
 
         const comment = {
             campsiteId: parseInt(campsiteId),
             text: values.commentText,
             date: new Date(Date.now()).toISOString(),
-            key: uniqueId
+            
 
         }
 
-        dispatch(addCampComment(comment));
+        dispatch(postCampsiteComment(comment));
         setShow(false)
 
     }

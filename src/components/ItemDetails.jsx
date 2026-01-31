@@ -5,11 +5,11 @@ import campsitePlaceholderImg from '../app/images/campsitesPlaceholder.png';
 import overlookPlaceholderImg from '../app/images/overlookPlaceholder.png'
 
 const ItemDetails = ({ item }) => {
-    const { image, description, location, title, kindOfPlace } = item;
+    const { image, description, location, title, kindOfPlace, dateVisited } = item;
 
+    const formattedDate = new Date(dateVisited).toLocaleDateString();
 
-
-    let imageInsert;
+        let imageInsert;
 
     if (!image || image === "http://localhost:3001/null") {
         switch (kindOfPlace) {
@@ -27,18 +27,23 @@ const ItemDetails = ({ item }) => {
     } else imageInsert = image
 
     return (
-        <>         
-                            <Card.Img variant='top' alt={title} src={imageInsert} />
-                            <Card.Body>
-                                
-                                <Card.Text>
-                                    {description}
-                                </Card.Text>
-                                <Card.Title className='text-end'>
-                                    {location}
-                                    
-                                </Card.Title>
-                            </Card.Body>
+        <>
+            <Card.Img variant='top' alt={title} src={imageInsert} />
+            <Card.Body>
+
+                <Card.Text>
+                    {description}
+                </Card.Text>
+                <div className='d-flex justify-content-between'>
+                    <Card.Title className='text-start'>
+                        {location}
+                    </Card.Title>
+                    <div className='d-flex'>
+                        <Card.Text className='me-2 fw-bold'>First Visit: </Card.Text>
+                        <Card.Text className='fw-bold'>{formattedDate}</Card.Text>
+                    </div>
+                </div>
+            </Card.Body>
         </>
     )
 }
