@@ -2,7 +2,8 @@ import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-import { deleteCampsite, patchFavCampsite } from './campsitesSlice'
+import { deleteCampsite, patchFavCampsite } from './campsitesSlice';
+import { deleteAllCampsitesComments } from './campsitesCommentsSlice';
 import campsitesPlaceHolderImg from '../../app/images/campsitesPlaceholder.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -67,7 +68,10 @@ const CampsiteCard = ({ campsite }) => {
                         <FontAwesomeIcon 
                             icon='fa-solid fa-trash-can'
                             size='xl'
-                            onClick={() => dispatch(deleteCampsite(campsite.id))}
+                            onClick={() => {
+                                dispatch(deleteCampsite(campsite.id));
+                                dispatch(deleteAllCampsitesComments(campsite.id))
+                            }}
                             />
                     </div>
                 </div>

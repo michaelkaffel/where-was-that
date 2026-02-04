@@ -11,7 +11,7 @@ const HikesCommentsList = ({ hikeId }) => {
     if (comments && comments.length > 0) {
         return (
             <Col>
-                <h4>Comments</h4>
+                <h4 className='mb-3 text-center text-decoration-underline'>Comments</h4>
                 {comments.map((comment) => {
                     return <HikeComment 
                                 key={comment.id} 
@@ -25,7 +25,7 @@ const HikesCommentsList = ({ hikeId }) => {
 
     return (
         <Col className='m-1'>
-            <h4>Comments</h4>
+            <h4 className='mb-3 text-center text-decoration-underline'>Comments</h4>
             <p>There are no comments for this hike yet.</p>
             <HikeCommentForm hikeId={hikeId} />
         </Col>

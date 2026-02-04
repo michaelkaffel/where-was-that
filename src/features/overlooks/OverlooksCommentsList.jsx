@@ -12,7 +12,7 @@ const OverlooksCommentsList = ({ overlookId }) => {
     if (comments && comments.length > 0) {
         return (
             <Col>
-                <h4>Comments</h4>
+                <h4 className='mb-3 text-center text-decoration-underline'>Comments</h4>
                 {comments.map((comment) => {
                     return <OverlookComment
                         key={comment.id}
@@ -26,7 +26,7 @@ const OverlooksCommentsList = ({ overlookId }) => {
 
     return (
         <Col className='m-1'>
-            <h4>Comments</h4>
+            <h4 className='mb-3 text-center text-decoration-underline'>Comments</h4>
             <p>There are no comments for this campsite yet.</p>
             <OverlookCommentForm overlookId={overlookId} />
         </Col>

@@ -26,7 +26,7 @@ export const postCampsiteComment = createAsyncThunk(
         if (!response.ok) {
             return Promise.reject('Unable to post, status: ' + response.status)
         } 
-        return await response.json()
+        return await response.json();
     }
 );
 
@@ -37,9 +37,22 @@ export const deleteCampsiteComment = createAsyncThunk(
             method: 'DELETE'
         });
         if (!response.ok) {
-            return Promise.reject('Unable to delete, status: ' + response.status)
+            return Promise.reject('Unable to delete comment, status: ' + response.status)
         }
         return id;
+    }
+)
+
+export const deleteAllCampsitesComments = createAsyncThunk(
+    'campsitescomments/deleteAllCampsitesComments',
+    async (campsiteId) => {
+        const response = await fetch(baseUrl + 'campsitescomments/' + campsiteId, {
+            method: 'DELETE'
+        });
+        if (!response.ok) {
+            return Promise.reject('Unable to delete comments, status: ' + response.status)
+        }
+        return campsiteId;
     }
 )
 
@@ -74,21 +87,28 @@ const campsitesCommentsSlice = createSlice({
                 state.campsitesCommentsArray.push(action.payload)
             })
             .addCase(postCampsiteComment.rejected, (state, action) => {
+                state.isLoading = false;
                 alert(
                     'Your comment could not be posted\nError: ' +
                     (action.error ? action.error.message : 'POST failed')
-                )
+                );
             })
             .addCase(deleteCampsiteComment.fulfilled, (state, action) => {
                 state.campsitesCommentsArray = state.campsitesCommentsArray.filter(
                     (comment) => comment.id !== action.payload
-                )
+                );
             })
             .addCase(deleteCampsiteComment.rejected, (state, action) => {
+                state.isLoading = false;
                 alert(
                     'Your comment could not be deleted\nError: ' +
                     (action.error ? action.error.message : 'DELETE failed')
-                )
+                );
+            })
+            .addCase(deleteAllCampsitesComments.fulfilled, (state, action) => {
+                state.campsitesCommentsArray = state.campsitesCommentsArray.filter(
+                    (comment) => comment.campsiteId !== action.payload
+                );
             })
     }
 });

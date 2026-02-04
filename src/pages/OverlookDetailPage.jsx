@@ -8,33 +8,48 @@ import { selectOverlooksById } from '../features/overlooks/overlooksSlice';
 import ItemDetails from '../components/ItemDetails';
 import SubHeaderOverlooks from '../components/SubHeaderOverlooks';
 import OverlooksCommentsList from '../features/overlooks/OverlooksCommentsList';
+import Error from '../components/Error';
+import Loading from '../components/Loading';
 
 const OverlookDetailPage = () => {
 
     const { id } = useParams();
     const overlook = useSelector(selectOverlooksById(id));
-    const { title } = overlook
 
+    const isLoading = useSelector((state) => state.overlooks.isLoading);
+    const errMsg = useSelector((state) => state.overlooks.errMsg);
+    let content = null;
 
-
-    return (
-        <>
-            <Container>
-                <Row>
-                    <Col>
-                        <SubHeaderOverlooks current={overlook.title} detail={true} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <h2 className='text-center'>{title}</h2>
+    if (isLoading) {
+        content = <Loading />
+    } else if (errMsg) {
+        content = <Error errMsg={errMsg} />
+    } else {
+        content = (
+            <>
+                <h2 className='text-center'>{overlook.title}</h2>
                         <Card>
                             <ItemDetails item={overlook} />
                             <Card.Footer>
                                 <OverlooksCommentsList overlookId={id} />
                             </Card.Footer>
                         </Card>
-                    </Col>Ï
+            </>
+        )
+    }
+
+    return (
+        <>
+            <Container>
+                <Row>
+                    <Col>
+                        {overlook && <SubHeaderOverlooks current={overlook.title} detail={true} />}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        {content}
+                    </Col>
                 </Row>
             </Container>
         </>

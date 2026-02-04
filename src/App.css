@@ -28,3 +28,16 @@ body {
 .home-page-row-btns {
     min-width: 100px;
 }
+
+.comment-close-icon {
+    cursor: pointer;
+    color: 'red';
+}
+
+.comment-close-icon:hover {
+    color: red;
+}
+
+.pointer-effect {
+    cursor: pointer
+}

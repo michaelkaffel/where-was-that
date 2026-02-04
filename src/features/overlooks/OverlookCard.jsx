@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import { deleteOverlook, patchFavOverlook } from './overlooksSlice';
+import { deleteAllOverlooksComments } from './overlooksCommentsSlice';
 import overlookPlaceHolderImg from '../../app/images/overlookPlaceholder.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -34,6 +35,7 @@ const OverlookCard = ({ overlook }) => {
                             icon="fa-solid fa-heart" 
                             size="xl" 
                             color='red'
+                            className='pointer-effect'
                         />
     } else {
         favoriteButton = <FontAwesomeIcon 
@@ -43,6 +45,7 @@ const OverlookCard = ({ overlook }) => {
                                 icon="fa-regular fa-heart" 
                                 size="xl" 
                                 color='red'
+                                className='pointer-effect'
                             />
     }
 
@@ -67,7 +70,11 @@ const OverlookCard = ({ overlook }) => {
                        <FontAwesomeIcon 
                             icon='fa-solid fa-trash-can'
                             size='xl'
-                            onClick={() => dispatch(deleteOverlook(overlook.id))}
+                            className='pointer-effect'
+                            onClick={() => {
+                                dispatch(deleteOverlook(overlook.id));
+                                dispatch(deleteAllOverlooksComments(overlook.id))
+                            }}
                             />
                     </div>
                 </div>

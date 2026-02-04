@@ -1,38 +1,38 @@
 import { useDispatch } from "react-redux";
-import { deleteOverlookComment } from "./overlooksCommentsSlice";
+import { deleteHikeComment } from "./hikesCommentsSlice";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 library.add(fas, far)
 
-const OverlookComment = ({ comment }) => {
-
+const HikeComment = ({ comment }) => {
     const dispatch = useDispatch();
     
-    const { text: commentText, date, id } = comment;
-
-    const formattedDate = new Date(date).toLocaleDateString();
+        const { text: commentText, date, id } = comment;
+    
+        const formattedDate = new Date(date).toLocaleDateString();
     
         return (
             <>
-                
                 <div className="d-flex justify-content-between">
                     <p>{commentText}</p>
                     <FontAwesomeIcon
-                        onClick={() => dispatch(deleteOverlookComment(id))}
+                        onClick={() => dispatch(deleteHikeComment(id))}
                         icon='fa-regular fa-circle-xmark'
+                        className="comment-close-icon"
                     />
-                    
                 </div>
-                <p style={{ fontSize: '.8rem', marginTop: '-.7rem' }} className='text-end'>{formattedDate}</p>
-    
+                <p 
+                    style={{ fontSize: '.8rem', marginTop: '-.7rem' }}
+                    className='text-end'
+                >
+                    {formattedDate}
+                </p>
                 <hr />
-    
             </>
         )
-};
+    };
 
-export default OverlookComment;
+export default HikeComment;

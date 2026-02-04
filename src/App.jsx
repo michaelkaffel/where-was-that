@@ -5,6 +5,8 @@ import { fetchCampsites } from './features/campsites/campsitesSlice';
 import { fetchOverlooks } from './features/overlooks/overlooksSlice';
 import { fetchHikes } from './features/hikes/hikesSlice';
 import { fetchCampsiteComments } from './features/campsites/campsitesCommentsSlice';
+import { fetchHikeComments } from './features/hikes/hikesCommentsSlice';
+import { fetchOverlookComments } from './features/overlooks/overlooksCommentsSlice';
 import { Routes, Route } from 'react-router-dom';
 import NavigationBar from "./components/NavigationBar";
 import Home from './pages/HomePage';
@@ -27,7 +29,9 @@ function App() {
     dispatch(fetchCampsites());
     dispatch(fetchOverlooks());
     dispatch(fetchHikes());
-    dispatch(fetchCampsiteComments())
+    dispatch(fetchCampsiteComments());
+    dispatch(fetchHikeComments());
+    dispatch(fetchOverlookComments())
   }, [dispatch]);
   
   return (

@@ -8,12 +8,35 @@ import { selectHikeById } from '../features/hikes/hikesSlice';
 import ItemDetails from '../components/ItemDetails';
 import SubHeader from '../components/SubHeaderHikes';
 import HikesCommentsList from '../features/hikes/HikesCommentsList';
+import Error from '../components/Error';
+import Loading from '../components/Loading';
 
 const HikingDetailPage = () => {
 
     const { id } = useParams();
     const hike = useSelector(selectHikeById(id));
-    const { title } = hike
+    
+    const isLoading = useSelector((state) => state.hikes.isLoading);
+    const errMsg = useSelector((state) => state.hikes.errMsg);
+    let content = null;
+
+    if (isLoading) {
+        content = <Loading />
+    } else if (errMsg) {
+        content = <Error errMsg={errMsg} />
+    } else {
+        content = (
+            <>
+                <h2 className='text-center'>{hike.title}</h2>
+                <Card>
+                    <ItemDetails item={hike} />
+                    <Card.Footer>
+                        <HikesCommentsList hikeId={id} />
+                    </Card.Footer>
+                </Card>
+            </>
+        )
+    }
 
     return (
         <>
@@ -21,19 +44,13 @@ const HikingDetailPage = () => {
             <Container>
                 <Row>
                     <Col>
-                        <SubHeader current={hike.title} detail={true} />
+                        {hike && <SubHeader current={hike.title} detail={true} />}
                     </Col>
                 </Row>
 
                 <Row>
                     <Col>
-                        <h2 className='text-center'>{title}</h2>
-                        <Card>
-                        <ItemDetails item={hike} />
-                        <Card.Footer>
-                        <HikesCommentsList hikeId={id} />
-                        </Card.Footer>
-                        </Card>
+                        {content}
                     </Col>
                 </Row>
             </Container>

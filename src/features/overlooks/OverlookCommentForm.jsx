@@ -5,11 +5,11 @@ import { Formik, Field, Form as FForm, ErrorMessage } from 'formik';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Stack from 'react-bootstrap/Stack'
-import { addHikeComment } from './hikesCommentsSlice';
-import { validateCommentForm } from '../../utils/validateCommentForm';
+import { postOverlookComment } from './overlooksCommentsSlice';
+import { validateCommentForm } from '../../utils/validateCommentForm'
 
-const HikeCommentForm = ({ hikeId }) => {
-
+const OverlookCommentForm = ({ overlookId }) => {
+    
     const [show, setShow] = useState(false);
 
     const dispatch = useDispatch();
@@ -18,18 +18,15 @@ const HikeCommentForm = ({ hikeId }) => {
     const handleShow = () => setShow(true);
 
     const handleSubmit = (values) => {
-
-        const uniqueId = Math.floor(Math.random() * 1000);
+        
 
         const comment = {
-            hikeId: parseInt(hikeId),
+            overlookId: parseInt(overlookId),
             text: values.commentText,
             date: new Date(Date.now()).toISOString(),
-            key: uniqueId
-
         }
 
-        dispatch(addHikeComment(comment));
+        dispatch(postOverlookComment(comment));
         setShow(false)
 
     }
@@ -37,9 +34,9 @@ const HikeCommentForm = ({ hikeId }) => {
     return (
         <>
             <Stack direction="horizontal">
-            <Button className='ms-auto' variant='primary' onClick={handleShow}>
-                Add Comment!
-            </Button>
+                <Button className='ms-auto' variant='primary' onClick={handleShow}>
+                    Add Comment!
+                </Button>
             </Stack>
 
             <Modal show={show} onHide={handleClose}>
@@ -49,18 +46,18 @@ const HikeCommentForm = ({ hikeId }) => {
                 <Modal.Body>
                     <Formik
                         initialValues={{
-                            commentText: '',
+                            commentText: ''
                         }}
                         onSubmit={handleSubmit}
                         validate={validateCommentForm}
                     >
                         <FForm>
                             <Form.Group>
-                                <Form.Label htmlFor='commentText'>Comment</Form.Label>
-                                <Field 
-                                    name='commentText' 
-                                    as='textarea' 
-                                    placeholder='Add a comment' 
+                                <Form.Label htmlFor='commentText' >Comment</Form.Label>
+                                <Field
+                                    name='commentText'
+                                    as='textarea'
+                                    placeholder='Add a comment!'
                                     className='form-control'
                                 />
                                 <ErrorMessage name='commentText'>
@@ -76,11 +73,13 @@ const HikeCommentForm = ({ hikeId }) => {
                             </Button>
                             </Stack>
                         </FForm>
+
                     </Formik>
                 </Modal.Body>
+               
             </Modal>
         </>
     );
 };
 
-export default HikeCommentForm;
+export default OverlookCommentForm;
