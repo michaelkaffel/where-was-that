@@ -4,7 +4,7 @@ This project was built in the Nucamp 'Dynamic with React' course. Use [Where Was
 
 # Branch Organization
 
-This project can be initialized from different branches. For a 'stand-alone' version that uses local-storage initialze the main branch. For a version that utilizes json-server database initialize the 'jsonserverversion' branch.
+This project can be initialized from different branches. For a 'stand-alone' version that uses local-storage initialize the main branch. For a version that utilizes json-server database initialize the 'jsonserverversion' branch.
 
 # Getting Started with Create React App and Redux
 
