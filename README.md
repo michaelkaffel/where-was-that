@@ -1,6 +1,6 @@
 # Project Introduction
 
-This project was built in the Nucamp 'Dynamic with React' course. 
+This project was built in the Nucamp 'Dynamic with React' course. Use [Where Was That](https://where-was-that-mk-react.web.app/) to store and keep track of your favorite outdoor places.
 
 # Branch Organization
 
